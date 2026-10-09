@@ -10,8 +10,12 @@ The portfolio must be fast, cheap, private by default and portable. The owner's 
 ## Decision
 
 1. **Static-first.** Astro builds plain HTML and CSS. The site reads correctly with every edge feature switched off.
-2. **Cloudflare Pages with Git integration** deploys from `main`, and pull requests get preview deployments. There are no
-   deploy tokens in GitHub. GitHub Actions only builds and checks.
+2. **Cloudflare Pages, direct upload of the CI-tested build.** CI builds and checks every push and keeps `dist/` as an
+   artifact. That exact artifact is deployed with Wrangler under the owner's `wrangler login`. There are no deploy tokens
+   in GitHub. (Amended 2026-10-09: Git integration was planned, but the dashboard sign-in is unavailable from the agent's
+   browser. Direct upload keeps "deploy what was tested". A Pages project created by direct upload cannot later switch to
+   Git integration. If automatic deploys are wanted, add a deploy job using a scoped API token that the owner stores as a
+   GitHub secret.)
 3. **Edge features are Pages Functions** in `/functions`. The first one is `/api/edge`, which returns the visitor's own
    `request.cf` data and stores nothing.
 4. **Privacy.** Fonts are self-hosted, with no third-party requests. No cookies. Cloudflare Web Analytics, if enabled, is

@@ -19,8 +19,18 @@ Pages Functions (`/functions`) run on Cloudflare. To try them locally: `npx wran
 
 ## Deploy
 
-Cloudflare Pages Git integration builds `main` with `npm run build`, output `dist`. Pull requests get preview deployments.
-There are no deploy tokens in this repository.
+The Cloudflare Pages project `amazen33` serves https://amazen33.pages.dev (custom domain: `amazen33.dev`).
+Deployments are **direct uploads of the exact build CI tested**:
+
+1. A push to `main` runs CI, which builds the site, checks it, and keeps `dist/` as the `site-dist` artifact.
+2. Download that artifact and deploy it with Wrangler, authenticated by the owner's `wrangler login`:
+
+```bash
+gh run download <run-id> -R amazen33/portfolio -n site-dist -D site-dist
+npx wrangler@4.139.0 pages deploy site-dist --project-name amazen33 --branch main --commit-hash <sha>
+```
+
+No deploy token is stored in this repository.
 
 ## Content
 
