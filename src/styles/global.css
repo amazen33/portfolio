@@ -71,6 +71,7 @@ code { font-family: var(--font-mono); font-size: 0.86em; background: var(--code-
 .wrap { max-width: var(--wide); margin: 0 auto; padding-inline: 20px; }
 .prose { max-width: var(--measure); }
 .stack { display: grid; gap: 18px; }
+.stack > *, section > * { min-width: 0; }
 .stack-lg { display: grid; gap: 56px; }
 .eyebrow { font-family: var(--font-mono); font-size: 0.76rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); }
 .lede { font-size: 1.2rem; color: var(--ink); max-width: 60ch; }
@@ -108,7 +109,7 @@ main { padding-block: 48px 80px; }
 .grid-3 > .card { display: flex; flex-direction: column; gap: 10px; }
 .grid-3 > .card > .more { margin-top: auto; padding-top: 4px; }
 
-.tag { display: inline-block; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.04em; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
+.tag { display: inline-block; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.04em; padding: 2px 8px; border-radius: 999px; max-width: 100%; overflow-wrap: anywhere; }
 .tag.live { background: var(--ok-bg); color: var(--ok); }
 .tag.plan { background: var(--note-bg); color: var(--note); }
 .tag.neutral { background: var(--code-bg); color: var(--muted); }
