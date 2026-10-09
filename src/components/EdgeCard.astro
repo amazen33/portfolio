@@ -28,7 +28,10 @@
       for (const el of list?.querySelectorAll<HTMLElement>('[data-k]') ?? []) {
         const key = el.dataset.k as string;
         const value = data[key];
-        el.textContent = value === null || value === undefined ? 'n/a' : key === 'clientTcpRtt' ? `${value} ms` : key === 'asn' ? `AS${value}` : String(value);
+        const quic = String(data.httpProtocol ?? '').toUpperCase().startsWith('HTTP/3');
+        el.textContent = value === null || value === undefined
+          ? (key === 'clientTcpRtt' && quic ? 'n/a over HTTP/3' : 'n/a')
+          : key === 'clientTcpRtt' ? `${value} ms` : key === 'asn' ? `AS${value}` : String(value);
       }
       if (list) list.hidden = false;
       if (status) status.textContent = 'Served by Cloudflare; these values describe your connection to the edge.';

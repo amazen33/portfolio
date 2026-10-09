@@ -31,7 +31,8 @@ export const onRequestGet = async ({ request }: { request: Request & { cf?: Edge
     asn: pick(cf.asn),
     tlsVersion: pick(cf.tlsVersion),
     httpProtocol: pick(cf.httpProtocol),
-    clientTcpRtt: pick(cf.clientTcpRtt),
+    // HTTP/3 runs over QUIC, so there is no TCP round trip; Cloudflare reports 0, which we return as null.
+    clientTcpRtt: cf.clientTcpRtt ? cf.clientTcpRtt : null,
     generatedAt: new Date().toISOString()
   };
   return new Response(JSON.stringify(body), {
