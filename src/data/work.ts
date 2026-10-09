@@ -23,7 +23,7 @@ export const work = [
     name: 'IOT-EE',
     kicker: 'Multi-tenant IoT platform',
     summary:
-      'Tank monitoring on Spring Boot, with ThingsBoard CE behind a replaceable, upgradeable boundary.',
+      'An enterprise IoT platform on Spring Boot, with ThingsBoard CE behind a replaceable boundary and a Migration Manager that brings existing ThingsBoard rule chains and data across.',
     status: { label: 'Implemented and tested locally', tone: 'plan' },
     repo: { label: 'github.com/amazen33/IOT-EE', href: 'https://github.com/amazen33/IOT-EE' }
   }

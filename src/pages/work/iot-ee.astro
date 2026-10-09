@@ -8,14 +8,17 @@ const diagram = `flowchart LR
   SV --> PG["PostgreSQL<br/>pooled tenants + RLS"]
   SV --> TB["ThingsBoard CE<br/>unforked, behind an adapter"]
   D["Devices"] -->|"MQTT"| TB
-  CT["Contracts<br/>.proto · OpenAPI · JSON Schema"] -.-> SV`;
+  CT["Contracts<br/>.proto · OpenAPI · JSON Schema"] -.-> SV
+  X["Existing ThingsBoard<br/>deployment"] -->|"rule chains as JSON<br/>database history"| MM["Migration Manager<br/>register · validate (dry run)<br/>preview · approve · import"]
+  MM -->|"after approval"| TB
+  MM -->|"after approval"| PG`;
 ---
-<Base title="IOT-EE: a multi-tenant IoT platform" description="Multi-tenant tank-monitoring IoT platform on Spring Boot, with ThingsBoard CE behind a replaceable, upgradeable boundary.">
+<Base title="IOT-EE: a multi-tenant IoT platform" description="An enterprise multi-tenant IoT platform on Spring Boot, with ThingsBoard CE behind a replaceable boundary and a Migration Manager for existing ThingsBoard rule chains and data.">
   <article class="stack-lg">
     <header class="stack">
       <p class="eyebrow">Case study 3 · Multi-tenant IoT platform</p>
       <h1>IOT-EE</h1>
-      <p class="lede">Enterprise capabilities for ThingsBoard CE operators, without a fork they can never upgrade.</p>
+      <p class="lede">Enterprise capabilities for ThingsBoard CE operators, a safe path off an existing deployment, and no fork they can never upgrade.</p>
       <div class="tags"><span class="tag plan">Implemented and tested locally · not yet deployed</span></div>
     </header>
 
@@ -23,7 +26,8 @@ const diagram = `flowchart LR
       <h2>The problem</h2>
       <p>
         IoT operators on ThingsBoard CE need enterprise capabilities such as tenancy, entitlements, audit, firmware management and
-        disaster recovery. They also need to avoid a fork they can never upgrade, and to migrate off a legacy deployment safely.
+        disaster recovery. They also need to avoid a fork they can never upgrade, and to move off an existing deployment without
+        losing the rule logic and history their business runs on.
       </p>
     </section>
 
@@ -31,16 +35,22 @@ const diagram = `flowchart LR
       <h2>The approach</h2>
       <ul class="rule-list prose">
         <li><span class="n">01</span><div><strong>Platform:</strong> Java 17, Spring Boot 3 and Spring Cloud, with ThingsBoard CE kept unforked behind a replaceable, upgradeable adapter boundary.</div></li>
-        <li><span class="n">02</span><div><strong>Domain coverage:</strong> tenants, devices, tanks, telemetry, alarms, reports and firmware.</div></li>
-        <li><span class="n">03</span><div><strong>Architecture rules that are tested, not just documented:</strong> hexagonal architecture, with boundaries enforced by ArchUnit tests.</div></li>
-        <li><span class="n">04</span><div><strong>Executable specification.</strong> A reference implementation covers milestones M0 to M8, and every real-backend item is explicitly marked as blocked until it can be verified.</div></li>
+        <li><span class="n">02</span><div><strong>Domain coverage:</strong> tenants, devices, assets and their hierarchy, telemetry, alarms, commands, reports and firmware. The first use case is tank monitoring, and the model is general to any asset fleet.</div></li>
+        <li><span class="n">03</span><div><strong>Migration Manager.</strong> Brings an existing ThingsBoard deployment across: rule chains and their rule nodes exported as JSON, plus the database history. Every source goes through a governed lifecycle: register, validate (dry run), preview (dry run), approve, then import. Secrets are stored only as vault references.</div></li>
+        <li><span class="n">04</span><div><strong>Architecture rules that are tested, not just documented:</strong> hexagonal architecture, with boundaries enforced by ArchUnit tests.</div></li>
+        <li><span class="n">05</span><div><strong>Executable specification.</strong> A reference implementation covers milestones M0 to M8, and every real-backend item is explicitly marked as blocked until it can be verified.</div></li>
       </ul>
-      <Diagram code={diagram} caption="Communication direction and tenancy, from the repository's architecture conventions." source={{ label: 'repository', href: 'https://github.com/amazen33/IOT-EE' }} />
+      <Diagram code={diagram} caption="Communication direction, tenancy and the migration path, from the repository's architecture and Migration Studio documents." source={{ label: 'repository', href: 'https://github.com/amazen33/IOT-EE' }} />
     </section>
 
     <section class="stack prose">
       <h2>Status</h2>
-      <p>Implemented and tested locally; not yet deployed (the README says so). <a href="https://github.com/amazen33/IOT-EE">Repository →</a></p>
+      <p>
+        Implemented and tested locally; not yet deployed (the README says so). In the Migration Manager, source registration, the
+        dry-run validate and preview steps (tests prove they change nothing) and the approval gates are implemented. Reading real
+        rule-chain exports, mapping rule nodes, shadow comparison and the final import and cutover come next, and need access to a
+        real legacy deployment. <a href="https://github.com/amazen33/IOT-EE">Repository →</a>
+      </p>
     </section>
   </article>
 </Base>
