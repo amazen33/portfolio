@@ -1,0 +1,76 @@
+---
+import Base from '../../layouts/Base.astro';
+import Diagram from '../../components/Diagram.astro';
+
+const diagram = `flowchart TB
+  C["AWS CLI · AWS SDKs<br/>CloudFormation · console"]
+  A["Real AWS"]
+  C -->|"Twinfra profile"| G
+  C -.->|"AWS profile: the switch"| A
+  subgraph R["Twinfra region · e.g. cairo-1, DR partner cairo-2"]
+    G["API gateway (Go)<br/>SigV4 · IAM policy · audit"]
+    I["IAM · STS<br/>accounts"]
+    S["Service handlers<br/>EC2 · Lambda · RDS<br/>CloudWatch · CloudFormation · EKS"]
+    N["AWS-compatible servers<br/>SeaweedFS for S3<br/>ExtendDB for DynamoDB"]
+    E["MiniStack<br/>long tail · Emulated"]
+    P["Platform API<br/>Crossplane claims"]
+    B["KubeVirt · Knative<br/>CloudNativePG · OpenBao<br/>Prometheus · OpenSearch"]
+    G --> I & S & N & E
+    S --> P --> B
+  end`;
+---
+<Base title="Twinfra: an AWS-compatible private cloud" description="Twinfra (formerly vCloud): AWS CLI, SDKs and CloudFormation on your own infrastructure, switchable to AWS by profile. MIT-licensed.">
+  <article class="stack-lg">
+    <header class="stack">
+      <p class="eyebrow">Case study 1 · AWS-compatible private cloud · MIT</p>
+      <h1>Twinfra (formerly vCloud)</h1>
+      <p class="lede">Your AWS twin, on your own infrastructure. Same CLI, same SDKs, same templates. Switch anytime.</p>
+      <div class="tags"><span class="tag live">Lab platform live</span><span class="tag plan">AWS API layer: next phase</span></div>
+    </header>
+
+    <section class="stack prose">
+      <h2>The problem</h2>
+      <p>
+        Enterprises want AWS-style services on their own hardware for sovereignty, cost or edge sites, and they want to move
+        workloads back to AWS without rewriting them. The existing options are either AGPL-licensed, emulators with no real
+        infrastructure behind them, or private clouds with their own APIs.
+      </p>
+    </section>
+
+    <section class="stack">
+      <h2>The approach</h2>
+      <ul class="rule-list prose">
+        <li><span class="n">01</span><div><strong>AWS API as the contract.</strong> A regional gateway checks AWS signatures (SigV4) and IAM policies. The AWS CLI, SDKs and CloudFormation work unchanged, and switching to AWS means changing one profile.</div></li>
+        <li><span class="n">02</span><div><strong>Real infrastructure underneath,</strong> all Kubernetes-native: KubeVirt for EC2, CloudNativePG for RDS, Knative for Lambda in Go, and Prometheus with OpenSearch for CloudWatch. Less-used services are emulated and labelled as such.</div></li>
+        <li><span class="n">03</span><div><strong>Measured compatibility.</strong> One test suite runs against real AWS and against Twinfra, and every API operation is scored Match, Partial or Missing.</div></li>
+        <li><span class="n">04</span><div><strong>Licence-clean.</strong> Twinfra's own code is MIT, and every dependency is permissively licensed and checked in CI.</div></li>
+        <li><span class="n">05</span><div><strong>Regions with disaster-recovery partners.</strong> Each production region has a partner cluster (for example <code>cairo-1</code> with <code>cairo-2</code>), with asynchronous replication and a tested failover runbook.</div></li>
+      </ul>
+      <Diagram code={diagram} caption="Target architecture, from decision records ADR-0029 to ADR-0041." source={{ label: 'decision log', href: 'https://github.com/amazen33/vCloud/tree/main/docs' }} />
+    </section>
+
+    <section class="stack prose">
+      <h2>Enterprise-architecture view</h2>
+      <p>
+        A product goal, a capability catalog mapping each AWS service to its on-prem implementation, a phased roadmap, decision
+        records and a definition of done. It is the same discipline I apply to client programmes.
+      </p>
+      <h2>Sovereign edge</h2>
+      <p>
+        Traffic is scrubbed globally but decrypted, processed and logged only inside the serving region. Where a CDN cannot decrypt
+        in-country, it scrubs at layer 4 with TLS passthrough, and TLS, the web application firewall and logs stay in-region.
+      </p>
+    </section>
+
+    <section class="stack prose">
+      <h2>Status today, stated honestly</h2>
+      <p>The lab platform runs on a single node:</p>
+      <ul>
+        <li>Cilium default-deny networking and Argo CD GitOps with drift self-healing;</li>
+        <li>PostgreSQL 18 with pgvector;</li>
+        <li>a Keycloak-secured console with PKCE and MFA, behind an APISIX gateway.</li>
+      </ul>
+      <p>The AWS API layer is the next phase. <a href="https://github.com/amazen33/vCloud">Repository →</a></p>
+    </section>
+  </article>
+</Base>

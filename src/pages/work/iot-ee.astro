@@ -1,0 +1,46 @@
+---
+import Base from '../../layouts/Base.astro';
+import Diagram from '../../components/Diagram.astro';
+
+const diagram = `flowchart LR
+  W["Browser"] -->|"HTTPS"| GW["APISIX<br/>gateway"] --> BFF["Backend<br/>for frontend"] --> SV["Spring Boot services<br/>domain · ports · adapters<br/>gRPC between services"]
+  SV -->|"domain events"| KF["Kafka"]
+  SV --> PG["PostgreSQL<br/>pooled tenants + RLS"]
+  SV --> TB["ThingsBoard CE<br/>unforked, behind an adapter"]
+  D["Devices"] -->|"MQTT"| TB
+  CT["Contracts<br/>.proto · OpenAPI · JSON Schema"] -.-> SV`;
+---
+<Base title="IOT-EE: a multi-tenant IoT platform" description="Multi-tenant tank-monitoring IoT platform on Spring Boot, with ThingsBoard CE behind a replaceable, upgradeable boundary.">
+  <article class="stack-lg">
+    <header class="stack">
+      <p class="eyebrow">Case study 3 · Multi-tenant IoT platform</p>
+      <h1>IOT-EE</h1>
+      <p class="lede">Enterprise capabilities for ThingsBoard CE operators, without a fork they can never upgrade.</p>
+      <div class="tags"><span class="tag plan">Implemented and tested locally · not yet deployed</span></div>
+    </header>
+
+    <section class="stack prose">
+      <h2>The problem</h2>
+      <p>
+        IoT operators on ThingsBoard CE need enterprise capabilities such as tenancy, entitlements, audit, firmware management and
+        disaster recovery. They also need to avoid a fork they can never upgrade, and to migrate off a legacy deployment safely.
+      </p>
+    </section>
+
+    <section class="stack">
+      <h2>The approach</h2>
+      <ul class="rule-list prose">
+        <li><span class="n">01</span><div><strong>Platform:</strong> Java 17, Spring Boot 3 and Spring Cloud, with ThingsBoard CE kept unforked behind a replaceable, upgradeable adapter boundary.</div></li>
+        <li><span class="n">02</span><div><strong>Domain coverage:</strong> tenants, devices, tanks, telemetry, alarms, reports and firmware.</div></li>
+        <li><span class="n">03</span><div><strong>Architecture rules that are tested, not just documented:</strong> hexagonal architecture, with boundaries enforced by ArchUnit tests.</div></li>
+        <li><span class="n">04</span><div><strong>Executable specification.</strong> A reference implementation covers milestones M0 to M8, and every real-backend item is explicitly marked as blocked until it can be verified.</div></li>
+      </ul>
+      <Diagram code={diagram} caption="Communication direction and tenancy, from the repository's architecture conventions." source={{ label: 'repository', href: 'https://github.com/amazen33/IOT-EE' }} />
+    </section>
+
+    <section class="stack prose">
+      <h2>Status</h2>
+      <p>Implemented and tested locally; not yet deployed (the README says so). <a href="https://github.com/amazen33/IOT-EE">Repository →</a></p>
+    </section>
+  </article>
+</Base>

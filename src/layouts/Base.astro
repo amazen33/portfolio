@@ -1,0 +1,84 @@
+---
+import '@fontsource-variable/bricolage-grotesque';
+import '@fontsource-variable/manrope';
+import '@fontsource/jetbrains-mono/400.css';
+import '@fontsource/jetbrains-mono/600.css';
+import '../styles/global.css';
+import { profile, nav } from '../data/profile';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+const { title, description } = Astro.props;
+const pageTitle = title ? `${title} · ${profile.name}` : `${profile.name} — ${profile.title}`;
+const pageDescription = description ?? `${profile.roleLine}. ${profile.tagline}`;
+const canonical = new URL(Astro.url.pathname, profile.site).toString();
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+
+const personLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: profile.name,
+  jobTitle: profile.title,
+  description: profile.roleLine,
+  url: profile.site,
+  email: `mailto:${profile.email}`,
+  address: { '@type': 'PostalAddress', addressLocality: 'Cairo', addressCountry: 'EG' },
+  sameAs: [profile.linkedin, profile.github],
+  knowsAbout: ['Enterprise Architecture', 'Cloud Architecture', 'Platform Engineering', 'Kubernetes', 'AWS', 'Apache Kafka', 'Zero Trust', 'TOGAF']
+};
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#0b6e78" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={profile.name} />
+    <meta name="twitter:card" content="summary" />
+    <script type="application/ld+json" set:html={JSON.stringify(personLd)} />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="/" aria-label={`${profile.name}, home`}>
+          <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+            <rect x="1.5" y="1.5" width="29" height="29" rx="6" fill="none" stroke="currentColor" stroke-width="2" />
+            <path d="M8 23 L13 9 L18 23 M10 18 H16" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M19 23 V10 L22.5 17 L26 10 V23" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <span>{profile.name}</span>
+        </a>
+        <nav class="nav" aria-label="Main">
+          {nav.map((item) => (
+            <a href={item.href} aria-current={path === item.href || (item.href !== '/' && path.startsWith(item.href + '/')) ? 'page' : undefined}>{item.label}</a>
+          ))}
+        </nav>
+      </div>
+    </header>
+    <main id="main" class="wrap">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="wrap">
+        <span>© 2026 {profile.name} · {profile.title}</span>
+        <nav aria-label="Elsewhere">
+          <a href={`mailto:${profile.email}`}>{profile.email}</a>
+          <a href={profile.linkedin} rel="me noopener">LinkedIn</a>
+          <a href={profile.github} rel="me noopener">GitHub</a>
+          <a href="https://github.com/amazen33/portfolio">Source (MIT)</a>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>

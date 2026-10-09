@@ -1,0 +1,52 @@
+---
+import Base from '../../layouts/Base.astro';
+import Diagram from '../../components/Diagram.astro';
+
+const diagram = `flowchart LR
+  C["Client"] --> A["API ingress<br/>request_id · correlation_id<br/>W3C traceparent"]
+  A --> T["PII replaced with<br/>versioned HMAC tokens"]
+  T --> K["Chunk and index"] --> V["Vector store adapter<br/>Chroma or OpenSearch"]
+  T --> M["Inference / risk scorer<br/>adapter: Ollama"]
+  A --> E["Kafka events<br/>with correlation headers"]
+  A --> U["Immutable audit<br/>object lock: S3 · Azure · GCS"]
+  A --> L["Lifecycle<br/>COMPLETED or COMPENSATED"]`;
+---
+<Base title="Hybrid Streaming RAG" description="A streaming RAG reference architecture with PII tokenization, immutable audit and compensating workflows.">
+  <article class="stack-lg">
+    <header class="stack">
+      <p class="eyebrow">Case study 2 · Reference architecture</p>
+      <h1>Hybrid Streaming RAG</h1>
+      <p class="lede">Retrieval-augmented generation on streaming data that takes personal data, auditability and partial failure seriously.</p>
+      <div class="tags"><span class="tag neutral">Reference implementation</span></div>
+    </header>
+
+    <section class="stack prose">
+      <h2>The problem</h2>
+      <p>
+        Retrieval-augmented generation on streaming data must handle personal data, auditability and partial failures. Most demos
+        ignore all three.
+      </p>
+    </section>
+
+    <section class="stack">
+      <h2>The approach</h2>
+      <ul class="rule-list prose">
+        <li><span class="n">01</span><div><strong>Personal data never leaves the ingress raw.</strong> Recognised personal data is replaced with versioned HMAC tokens before chunking, indexing, inference, events or audit writes.</div></li>
+        <li><span class="n">02</span><div><strong>Traceable requests.</strong> Every request gets server-issued request and correlation IDs and a W3C trace context. These travel in events and Kafka headers, and caller-supplied values are discarded.</div></li>
+        <li><span class="n">03</span><div><strong>Defined failure behaviour.</strong> If a downstream system fails, the workflow ends in a defined state, completed or compensated, with a matching compensating event.</div></li>
+        <li><span class="n">04</span><div><strong>Immutable audit</strong> through object-lock storage on S3, Azure or GCS.</div></li>
+        <li><span class="n">05</span><div><strong>Operational controls:</strong> bulkheads, rate limits, and Prometheus metrics with bounded cardinality.</div></li>
+        <li><span class="n">06</span><div><strong>Formal architecture documents:</strong> a TOGAF Architecture Definition and C4 models from Level 1 to Level 4.</div></li>
+      </ul>
+      <Diagram code={diagram} caption="Request path and failure handling, from the repository README." source={{ label: 'README', href: 'https://github.com/amazen33/omni-stream-RAG-mesh' }} />
+    </section>
+
+    <section class="stack prose">
+      <h2>Honest scope</h2>
+      <p>
+        The README itself says this is a bounded compensating-transaction design, not full event sourcing.
+        <a href="https://github.com/amazen33/omni-stream-RAG-mesh">Repository →</a>
+      </p>
+    </section>
+  </article>
+</Base>

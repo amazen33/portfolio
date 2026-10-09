@@ -1,0 +1,86 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  "basics": {
+    "name": "Ahmed Mazen",
+    "label": "Digital Transformation and Cloud Architecture Leader",
+    "email": "hello@amazen33.dev",
+    "url": "https://amazen33.dev",
+    "summary": "Principal Cloud & Platform Architect and Enterprise Architect with 16+ years of enterprise delivery across Saudi government platforms, telecom, fintech and IoT. I design cloud-native microservices, event-driven streaming platforms and multi-region disaster recovery that hold up under regulation (PCI DSS 4.0) and real load.",
+    "location": { "city": "Cairo", "countryCode": "EG" },
+    "profiles": [
+      { "network": "LinkedIn", "username": "amazen33", "url": "https://www.linkedin.com/in/amazen33" },
+      { "network": "GitHub", "username": "amazen33", "url": "https://github.com/amazen33" }
+    ]
+  },
+  "work": [
+    {
+      "name": "Spectro Systems",
+      "position": "Principal Cloud & AI Platform Architect",
+      "location": "Remote",
+      "startDate": "2026-01",
+      "highlights": [
+        "Zero-trust AWS architecture: VPC, PrivateLink, AWS WAF, Istio mTLS and SPIFFE/SPIRE workload identity.",
+        "Fintech event pipelines: Kafka with MirrorMaker 2 and Schema Registry, Debezium CDC, and LLM-assisted fraud anomaly detection.",
+        "PCI DSS 4.0 readiness: TOGAF governance with C4 models defining the cardholder data environment, and policy as code with OPA, Kyverno and Vault.",
+        "GitOps with Argo CD and Argo Rollouts, with LLM-assisted rollback analysis and log summarisation.",
+        "Multi-region and hybrid disaster recovery with Velero; health monitoring with CloudWatch Synthetics and Route 53."
+      ]
+    },
+    {
+      "name": "NTG Clarity",
+      "position": "Java Technical Lead / Architect",
+      "location": "KSA / Egypt",
+      "startDate": "2023",
+      "endDate": "2025",
+      "highlights": [
+        "Event-driven microservices with Kafka and Debezium CDC for major telecom operators, including Vodafone.",
+        "A distributed SNMP polling and fault-detection engine for carrier networks.",
+        "Enterprise architecture standards for strict SLAs and business continuity; TDD and SDLC governance."
+      ]
+    },
+    {
+      "name": "IoTSquared",
+      "position": "Java Technical Lead / Architect Consultant",
+      "location": "Riyadh",
+      "startDate": "2021",
+      "endDate": "2023",
+      "highlights": [
+        "Multi-tenant IoT and real-time location platforms for Saudi government entities, on ThingsBoard, Spring Boot and Cassandra.",
+        "Real-time analytics on Spark and PostgreSQL, with full-stack observability.",
+        "API governance with Apache APISIX across multi-cloud deployments on Alibaba Cloud."
+      ]
+    },
+    {
+      "name": "ELM",
+      "position": "Enterprise Technical Consultant / Solution Architect",
+      "location": "Riyadh",
+      "startDate": "2015",
+      "endDate": "2021",
+      "highlights": [
+        "National Information Center (NIC): integration platforms for secure identity verification, biometrics and high-concurrency cross-agency data exchange.",
+        "Muqeem: backend microservices and ESB workflows for expatriate residency (Iqama), visa and workforce services, handling millions of daily transactions.",
+        "Jawazat (General Directorate of Passports): integration gateways for border control, travel authorisation and visas.",
+        "Mooror (General Traffic Department): high-throughput interfaces for traffic violations, vehicle registration and licensing.",
+        "Government healthcare: health-record exchange, insurance validation and health-permit verification.",
+        "C4 architecture standards, TDD practice and API security guidelines across multi-disciplinary teams."
+      ]
+    }
+  ],
+  "earlier": "Java team lead (Beshara Group, Kuwait Ministry of Social Affairs), senior Java engineer (Silicon Expert), ISO 8583 banking middleware (Intercom Enterprise), IBM BPM and FileNet (ITBLOCKS), preceded by accounting (EZZ Trade).",
+  "education": [
+    { "institution": "Cairo University", "studyType": "Bachelor of Commerce", "area": "Accounting" }
+  ],
+  "certificates": [
+    { "name": "Sun Certified Java Programmer (SCJP)" },
+    { "name": "Sun Certified Web Component Developer (SCWCD)" }
+  ],
+  "frameworks": ["TOGAF ADM", "C4", "Domain-Driven Design", "PCI DSS 4.0"],
+  "skills": [
+    { "name": "Architecture and governance", "keywords": ["Enterprise Architecture (TOGAF ADM)", "C4 modelling", "Domain-Driven Design", "API governance", "Architecture decision records"] },
+    { "name": "Cloud and platforms", "keywords": ["AWS (EKS, VPC, NLB/ALB, WAF, S3, Route 53, CloudWatch)", "Kubernetes", "Helm", "Cilium", "Argo CD", "Crossplane"] },
+    { "name": "Security", "keywords": ["Zero Trust networking", "Istio Ambient mTLS", "SPIFFE/SPIRE", "OPA", "Kyverno", "OpenBao / Vault", "Keycloak / OIDC"] },
+    { "name": "Streaming and integration", "keywords": ["Apache Kafka", "Debezium CDC", "Flink", "Spark", "MirrorMaker 2", "Schema Registry", "REST / gRPC", "CQRS"] },
+    { "name": "Data and observability", "keywords": ["PostgreSQL / pgvector", "Cassandra", "MongoDB", "Prometheus", "OpenTelemetry", "OpenSearch"] },
+    { "name": "Engineering and AI", "keywords": ["Java / Spring Boot / Spring Cloud", "Python (FastAPI)", "TypeScript", "Angular", "React", "Applied LLMs and RAG"] }
+  ]
+}

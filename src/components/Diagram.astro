@@ -1,0 +1,35 @@
+---
+// Renders a Mermaid diagram in the browser. The diagram text is also the readable fallback if scripts are off.
+interface Props {
+  code: string;
+  caption: string;
+  source?: { label: string; href: string };
+}
+const { code, caption, source } = Astro.props;
+---
+<figure class="diagram">
+  <div class="diagram-canvas" tabindex="0" aria-label={`${caption} (scrolls sideways on small screens)`}>
+    <pre class="mermaid">{code}</pre>
+  </div>
+  <figcaption>
+    {caption}
+    {source && (<> · Source: <a href={source.href}>{source.label}</a></>)}
+  </figcaption>
+</figure>
+
+<script>
+  const nodes = document.querySelectorAll<HTMLElement>('pre.mermaid');
+  if (nodes.length) {
+    const dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    import('mermaid').then(({ default: mermaid }) => {
+      mermaid.initialize({
+        startOnLoad: false,
+        securityLevel: 'strict',
+        theme: dark ? 'dark' : 'neutral',
+        fontFamily: '"Manrope Variable", "Segoe UI", system-ui, sans-serif',
+        flowchart: { curve: 'basis', useMaxWidth: true, nodeSpacing: 36, rankSpacing: 46, wrappingWidth: 280 }
+      });
+      mermaid.run({ nodes: Array.from(nodes) });
+    });
+  }
+</script>

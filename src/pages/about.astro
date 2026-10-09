@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import { profile } from '../data/profile';
+---
+<Base title="About" description={`About ${profile.name}: ${profile.roleLine}.`}>
+  <article class="stack-lg">
+    <header class="stack">
+      <p class="eyebrow">About</p>
+      <h1>{profile.name}</h1>
+      <p class="role" style="font-family: var(--font-mono); color: var(--accent)">{profile.title}</p>
+    </header>
+    <div class="stack prose">
+      <p>
+        I'm a Principal Cloud & Platform Architect and Enterprise Architect with 16+ years of enterprise delivery across Saudi
+        government platforms, telecom, fintech and IoT. I design cloud-native microservices, event-driven streaming platforms and
+        multi-region disaster recovery that hold up under regulation (PCI DSS 4.0) and real load.
+      </p>
+      <p>
+        As an enterprise architect I work with TOGAF ADM, C4 modelling and Domain-Driven Design to turn strategy into governed
+        architecture: capability maps, decision records, target states and migration roadmaps. As a platform architect I build it:
+        Kubernetes, Kafka and Debezium CDC, zero-trust networking, GitOps and applied AI. I treat licences, security boundaries and
+        evidence as first-class design inputs.
+      </p>
+      <p>
+        Today I'm Principal Cloud & AI Platform Architect at Spectro Systems (remote). I'm also building <a href="/work/twinfra">Twinfra</a>,
+        an MIT-licensed, AWS-compatible private cloud.
+      </p>
+      <p class="muted">{profile.location}.</p>
+    </div>
+  </article>
+</Base>

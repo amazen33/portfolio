@@ -1,0 +1,34 @@
+---
+import Base from '../../layouts/Base.astro';
+import { work } from '../../data/work';
+---
+<Base title="Work" description="Case studies: Twinfra (AWS-compatible private cloud), Hybrid Streaming RAG, and IOT-EE.">
+  <div class="stack-lg">
+    <section class="section-head">
+      <p class="eyebrow">Work</p>
+      <h1>Case studies</h1>
+      <p class="lede">Three projects, each with its architecture, the decisions behind it, and an honest status.</p>
+    </section>
+    <div class="grid-3">
+      {work.map((w) => (
+        <article class="card">
+          <p class="eyebrow">{w.kicker}</p>
+          <h2 class="h3"><a href={`/work/${w.slug}`}>{w.name}</a></h2>
+          <p>{w.summary}</p>
+          <div class="tags"><span class={`tag ${w.status.tone}`}>{w.status.label}</span></div>
+          <p class="small"><a href={w.repo.href}>{w.repo.label}</a></p>
+          <a class="more" href={`/work/${w.slug}`}>Read the case study →</a>
+        </article>
+      ))}
+    </div>
+    <section class="section-head">
+      <p class="eyebrow">Labs</p>
+      <p class="prose">
+        <a href="https://github.com/amazen33/hexagonal-architecture-lab">hexagonal-architecture-lab</a> (Java ports and adapters) ·
+        <a href="https://github.com/amazen33/k8s-playbook">k8s-playbook</a> ·
+        <a href="https://github.com/amazen33/wsl2-k8s-lab">wsl2-k8s-lab</a> (MIT) ·
+        <a href="https://github.com/amazen33/pCloud">pCloud</a> (platform foundation: Hyper-V lab and storage packages)
+      </p>
+    </section>
+  </div>
+</Base>

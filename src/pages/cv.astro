@@ -1,0 +1,76 @@
+---
+import Base from '../layouts/Base.astro';
+import resume from '../data/resume.json';
+import { profile } from '../data/profile';
+
+const period = (job: { startDate?: string; endDate?: string }) => {
+  const fmt = (d?: string) => {
+    if (!d) return 'present';
+    const [y, m] = d.split('-');
+    return m ? new Date(Number(y), Number(m) - 1).toLocaleString('en-GB', { month: 'short', year: 'numeric' }) : y;
+  };
+  return `${fmt(job.startDate)} – ${fmt(job.endDate)}`;
+};
+---
+<Base title="CV" description={`CV of ${profile.name}: ${profile.roleLine}. 16+ years across government, telecom, fintech and IoT.`}>
+  <article class="stack-lg">
+    <header class="stack">
+      <p class="eyebrow">Curriculum vitae</p>
+      <h1>{resume.basics.name}</h1>
+      <p class="role" style="font-family: var(--font-mono); color: var(--accent)">{resume.basics.label}</p>
+      <p class="muted">{profile.roleLine} · {profile.venture}</p>
+      <p class="prose">{resume.basics.summary}</p>
+      <p class="small muted">
+        {profile.location} · <a href={`mailto:${profile.email}`}>{profile.email}</a> ·
+        <a href={profile.linkedin}>LinkedIn</a> · <a href={profile.github}>GitHub</a>
+      </p>
+      <div class="actions no-print"><button class="btn secondary" type="button" data-print>Print or save as PDF</button></div>
+    </header>
+
+    <section aria-labelledby="exp-h">
+      <h2 id="exp-h">Experience</h2>
+      <div>
+        {resume.work.map((job) => (
+          <div class="job">
+            <p class="when">{period(job)}<br />{job.location}</p>
+            <div>
+              <h3>{job.position}</h3>
+              <p class="org">{job.name}</p>
+              <ul>{job.highlights.map((h) => <li>{h}</li>)}</ul>
+            </div>
+          </div>
+        ))}
+        <div class="job">
+          <p class="when">2001 – 2015</p>
+          <div>
+            <h3>Earlier career</h3>
+            <p>{resume.earlier}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="skills-h">
+      <h2 id="skills-h">Skills</h2>
+      <div class="grid-2">
+        {resume.skills.map((s) => (
+          <div class="card">
+            <h3>{s.name}</h3>
+            <p class="muted">{s.keywords.join(' · ')}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section aria-labelledby="edu-h" class="prose">
+      <h2 id="edu-h">Education and certifications</h2>
+      <p><strong>Education:</strong> {resume.education.map((e) => `${e.studyType} (${e.area}), ${e.institution}`).join('; ')}.</p>
+      <p><strong>Certifications:</strong> {resume.certificates.map((c) => c.name).join(', ')}.</p>
+      <p><strong>Frameworks practised:</strong> {resume.frameworks.join(', ')}.</p>
+    </section>
+  </article>
+</Base>
+
+<script>
+  document.querySelector('[data-print]')?.addEventListener('click', () => window.print());
+</script>

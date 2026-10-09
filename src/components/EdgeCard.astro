@@ -1,0 +1,40 @@
+---
+// "Your edge": shows the visitor their own Cloudflare request metadata from /api/edge. Nothing is stored.
+---
+<aside class="edge no-print" aria-labelledby="edge-title">
+  <div>
+    <p class="eyebrow" id="edge-title">Your edge · live from this request</p>
+    <p class="small muted" data-edge-status>Asking the Cloudflare edge that served you…</p>
+  </div>
+  <dl hidden data-edge-list>
+    <div><dt>Data centre</dt><dd data-k="colo">—</dd></div>
+    <div><dt>Country</dt><dd data-k="country">—</dd></div>
+    <div><dt>Network (ASN)</dt><dd data-k="asn">—</dd></div>
+    <div><dt>TLS</dt><dd data-k="tlsVersion">—</dd></div>
+    <div><dt>HTTP</dt><dd data-k="httpProtocol">—</dd></div>
+    <div><dt>Round trip</dt><dd data-k="clientTcpRtt">—</dd></div>
+  </dl>
+  <p class="small muted">Read from your own request at the edge and shown only to you. No IP address is returned or stored.</p>
+</aside>
+
+<script>
+  const status = document.querySelector<HTMLElement>('[data-edge-status]');
+  const list = document.querySelector<HTMLElement>('[data-edge-list]');
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 4000);
+  fetch('/api/edge', { signal: controller.signal, headers: { accept: 'application/json' } })
+    .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
+    .then((data: Record<string, string | number | null>) => {
+      for (const el of list?.querySelectorAll<HTMLElement>('[data-k]') ?? []) {
+        const key = el.dataset.k as string;
+        const value = data[key];
+        el.textContent = value === null || value === undefined ? 'n/a' : key === 'clientTcpRtt' ? `${value} ms` : key === 'asn' ? `AS${value}` : String(value);
+      }
+      if (list) list.hidden = false;
+      if (status) status.textContent = 'Served by Cloudflare; these values describe your connection to the edge.';
+    })
+    .catch(() => {
+      if (status) status.textContent = 'Edge details are available on the live site (served by Cloudflare Pages Functions).';
+    })
+    .finally(() => clearTimeout(timer));
+</script>

@@ -1,0 +1,28 @@
+---
+import Base from '../layouts/Base.astro';
+import { profile } from '../data/profile';
+---
+<Base title="Contact" description={`Contact ${profile.name}: ${profile.email}, LinkedIn and GitHub.`}>
+  <article class="stack-lg">
+    <header class="stack">
+      <p class="eyebrow">Contact</p>
+      <h1>Let's talk architecture</h1>
+      <p class="lede">Principal cloud, platform and enterprise architecture roles: GCC on-site, remote, or Egypt.</p>
+    </header>
+    <div class="grid-3">
+      <div class="card">
+        <p class="eyebrow">Email</p>
+        <p><a href={`mailto:${profile.email}`}>{profile.email}</a></p>
+        <p class="small muted">The address itself, if your mail app doesn't open: <code>{profile.email}</code></p>
+      </div>
+      <div class="card">
+        <p class="eyebrow">LinkedIn</p>
+        <p><a href={profile.linkedin} rel="me noopener">linkedin.com/in/amazen33</a></p>
+      </div>
+      <div class="card">
+        <p class="eyebrow">GitHub</p>
+        <p><a href={profile.github} rel="me noopener">github.com/amazen33</a></p>
+      </div>
+    </div>
+  </article>
+</Base>

@@ -1,0 +1,72 @@
+---
+import Base from '../layouts/Base.astro';
+import EdgeCard from '../components/EdgeCard.astro';
+import { profile } from '../data/profile';
+import { work } from '../data/work';
+---
+<Base>
+  <div class="stack-lg">
+    <section class="hero">
+      <p class="eyebrow">{profile.name}</p>
+      <h1>{profile.title}</h1>
+      <p class="role">{profile.roleLine}</p>
+      <p class="lede">{profile.tagline}</p>
+      <div class="meta">
+        <span>{profile.venture}</span>
+        <span>{profile.location}</span>
+      </div>
+      <p class="prose muted">
+        16+ years building enterprise systems across government, telecom, banking and IoT. I connect enterprise
+        architecture (TOGAF, C4, DDD) with hands-on engineering: I write the decisions down, and I still read the code.
+      </p>
+      <div class="actions">
+        <a class="btn primary" href="/work">See the work</a>
+        <a class="btn secondary" href="/cv">Read the CV</a>
+        <a class="btn secondary" href={`mailto:${profile.email}`}>{profile.email}</a>
+      </div>
+    </section>
+
+    <section aria-labelledby="evidence-h">
+      <h2 id="evidence-h" class="eyebrow">Evidence, not adjectives</h2>
+      <div class="evidence">
+        <div><strong>16+</strong><span>years of enterprise delivery</span></div>
+        <div><strong>4</strong><span>sectors: government, telecom, fintech, IoT</span></div>
+        <div><strong>9</strong><span>CI checks on every Twinfra change, re-testing 6 earlier releases</span></div>
+        <div><strong>0</strong><span>copyleft dependencies allowed by Twinfra's licence policy</span></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="work-h">
+      <div class="section-head">
+        <p class="eyebrow">Featured work</p>
+        <h2 id="work-h">Products and reference architectures</h2>
+      </div>
+      <div class="grid-3">
+        {work.map((w) => (
+          <article class="card">
+            <p class="eyebrow">{w.kicker}</p>
+            <h3><a href={`/work/${w.slug}`}>{w.name}</a></h3>
+            <p>{w.summary}</p>
+            <div class="tags"><span class={`tag ${w.status.tone}`}>{w.status.label}</span></div>
+            <a class="more" href={`/work/${w.slug}`}>Read the case study →</a>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section aria-labelledby="practice-h">
+      <div class="section-head">
+        <p class="eyebrow">How I work</p>
+        <h2 id="practice-h">Decisions first, evidence always</h2>
+      </div>
+      <p class="prose">
+        Every significant choice is a written decision record. Licences are checked in CI. Static checks and live results are
+        reported separately, and nothing is "done" until a tester signs it off. AI agents help me deliver, under human governance:
+        no agent approves its own work.
+      </p>
+      <p><a href="/how-i-work">How I work →</a></p>
+    </section>
+
+    <EdgeCard />
+  </div>
+</Base>
