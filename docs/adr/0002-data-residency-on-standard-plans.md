@@ -36,7 +36,7 @@ on those plans, and to be precise about what they do not guarantee.
    **cannot** deliver "decrypt only in-region". The site documents Twinfra's ADR-0041 instead:
    - **Mode S4:** layer-4 scrubbing with TLS passthrough; TLS, WAF and logs in-region.
    - **Mode R7:** Regional Services, which lists KSA and UAE, under an Enterprise contract.
-   - The demo shows the in-region half on the Twinfra lab when it is published (ADR-0037): TLS termination, the WAF and in-region logs.
+   - The demo shows the in-region half in the Twinfra dev environment when it is published (ADR-0037): TLS termination, the WAF and in-region logs.
 5. **Encrypt before the edge (envelope encryption), with the keys in the right place.**
    - Sensitive demo payloads are encrypted **before** they reach Cloudflare: in the browser (WebCrypto AES-256-GCM with a fresh
      data key) or at an in-region origin.

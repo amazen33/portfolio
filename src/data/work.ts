@@ -1,4 +1,4 @@
-// Featured work. Status labels are deliberately conservative: "lab-validated" or "in progress", never "production".
+// Featured work. Status labels are deliberately conservative: "dev-validated" or "in progress", never "production".
 export const work = [
   {
     slug: 'twinfra',
@@ -6,7 +6,7 @@ export const work = [
     kicker: 'AWS-compatible private cloud · MIT',
     summary:
       'Your AWS twin, on your own infrastructure. The AWS CLI, SDKs and CloudFormation run on your own hardware and switch to AWS by changing one profile.',
-    status: { label: 'Lab platform live · AWS API layer next', tone: 'live' },
+    status: { label: 'Development environment running · AWS API layer next', tone: 'live' },
     repo: { label: 'github.com/amazen33/vCloud (being renamed to twinfra)', href: 'https://github.com/amazen33/vCloud' }
   },
   {
