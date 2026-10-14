@@ -1,14 +1,14 @@
 # Releasing
 
-The site follows three release streams: **Dev → Candidate → Stable**.
+The site follows three release streams: **Dev → Candidate → Stable**. See [ADR-0003](docs/adr/0003-production-from-stable-releases.md) for how they map onto Cloudflare Pages.
 
 ## Streams
 
-| Stream | What it is | Where it is deployed |
+| Stream | What it is | Where Cloudflare Pages serves it |
 | --- | --- | --- |
-| **Dev** | Every merge to `main`. CI keeps the tested build as the `site-dist` artifact | Optional preview: `--branch preview` |
-| **Candidate** | Tag `vX.Y.Z-rc.N` on `main`. A GitHub **pre-release** with the tested build attached | Preview for acceptance: `--branch rc` |
-| **Stable** | Tag `vX.Y.Z` on the **same commit** as the accepted candidate. The release workflow creates a **draft**, and the owner publishes it | **Production**: `--branch main`, only from a published stable release |
+| **Dev** | Every merge to `main` | Preview: `main.amazen33.pages.dev` |
+| **Candidate** | Tag `vX.Y.Z-rc.N` on `main`. A GitHub **pre-release** with the CI-tested build attached | The preview of that commit (linked from its `Cloudflare Pages` check) |
+| **Stable** | Tag `vX.Y.Z` on the **same commit** as the accepted candidate. The release workflow creates a **draft**, and the owner publishes it | **Production**, after the owner moves `production` to that commit |
 
 ## Version source
 
@@ -25,27 +25,21 @@ The `version` in `package.json` holds the **next release's base version**, `X.Y.
    - validates the tag;
    - builds and checks the site exactly as CI does;
    - creates a pre-release with `site-dist-vX.Y.Z-rc.1.zip` and its SHA-256 checksum.
-3. **Accept.** Deploy the candidate's asset to a preview and review it:
+3. **Accept.** Review the commit's preview deployment.
+4. **Stable.** Tag the **same commit** `vX.Y.Z`, push it, and publish the draft release.
+5. **Production.** Move `production` to the release commit. Cloudflare Pages then builds and serves it:
 
    ```bash
-   npx wrangler@4.139.0 pages deploy site-dist --project-name amazen33 --branch rc --commit-hash <sha>
+   git push origin vX.Y.Z^{commit}:refs/heads/production
    ```
 
-4. **Stable.** Tag the **same commit** `vX.Y.Z` and push it. Publish the draft release.
-5. **Production.** Download the stable release's `site-dist-vX.Y.Z.zip`, check it against the `.sha256`, unzip it into `site-dist/`, and deploy it:
-
-   ```bash
-   npx wrangler@4.139.0 pages deploy site-dist --project-name amazen33 --branch main --commit-hash <sha>
-   ```
-
-   No deploy token is stored in this repository; Wrangler uses the owner's `wrangler login` (ADR-0001).
 6. **Next.** Open a PR that bumps `package.json` to the next base version.
 
 ## Rules
 
 - **Tags are immutable.** A `v*` tag is never moved or deleted.
 - **Every change goes through a PR.** `main` requires the `Build and check` and `release-checks` status checks.
+- **`production` moves only to a published stable release.** It can't be deleted or force-pushed, and only admins can update it.
 - **Every PR updates `CHANGELOG.md` under `[Unreleased]`**, or carries the label `changelog:skip` with a reason.
-- **Production is deployed only from a published stable release.**
 
 The rulesets are in `.github/rulesets/`.
