@@ -19,6 +19,8 @@ Pages Functions (`/functions`) run on Cloudflare. To try them locally: `npx wran
 
 ## Deploy
 
+Production is deployed **only from a published stable release**; see [RELEASING.md](RELEASING.md) for the release streams.
+
 The Cloudflare Pages project `amazen33` serves https://amazen33.pages.dev (custom domain: `amazen33.dev`).
 Deployments are **direct uploads of the exact build CI tested**:
 
