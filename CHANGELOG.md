@@ -9,6 +9,9 @@ See [RELEASING.md](RELEASING.md) for the release streams.
 
 ### Added
 
+- Security disclosure (SEC-01): `/.well-known/security.txt` (RFC 9116, contact
+  `security@amazen33.dev`, expires 2027-04-30), `SECURITY.md`, and a CI check that the built
+  site contains the file.
 - Release streams (Dev, Candidate, Stable): `RELEASING.md`, this changelog, the
   `release-checks` and `release` workflows (the release attaches the CI-tested site build),
   and the rulesets in `.github/rulesets/`. `package.json` holds the next version (1.0.0).
