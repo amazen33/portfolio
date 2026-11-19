@@ -20,7 +20,8 @@ const { code, caption, source } = Astro.props;
 <script>
   const nodes = document.querySelectorAll<HTMLElement>('pre.mermaid');
   if (nodes.length) {
-    const dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const chosen = document.documentElement.dataset.theme;
+    const dark = chosen ? chosen === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
     import('mermaid').then(({ default: mermaid }) => {
       mermaid.initialize({
         startOnLoad: false,

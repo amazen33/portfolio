@@ -16,8 +16,8 @@ import { work } from '../data/work';
         <span>{profile.location}</span>
       </div>
       <p class="prose muted">
-        16+ years building enterprise systems across government, telecom, banking and IoT. I connect enterprise
-        architecture (TOGAF, C4, DDD) with hands-on engineering: I write the decisions down, and I still read the code.
+        {profile.experience} years building enterprise systems across banking, fintech, telecom, government, education and IoT. I connect
+        enterprise architecture (TOGAF, C4, DDD) with hands-on engineering: I write the decisions down, and I still read the code.
       </p>
       <div class="actions">
         <a class="btn primary" href="/work">See the work</a>
@@ -29,8 +29,8 @@ import { work } from '../data/work';
     <section aria-labelledby="evidence-h">
       <h2 id="evidence-h" class="eyebrow">Evidence, not adjectives</h2>
       <div class="evidence">
-        <div><strong>16+</strong><span>years of enterprise delivery</span></div>
-        <div><strong>4</strong><span>sectors: government, telecom, fintech, IoT</span></div>
+        <div><strong>{profile.experience}</strong><span>years of enterprise delivery</span></div>
+        <div><strong>6</strong><span>sectors: banking, fintech, telecom, government, education, IoT</span></div>
         <div><strong>9</strong><span>CI checks on every Twinfra change, re-testing 6 earlier releases</span></div>
         <div><strong>0</strong><span>copyleft dependencies allowed by Twinfra's licence policy</span></div>
       </div>

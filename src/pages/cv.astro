@@ -12,7 +12,7 @@ const period = (job: { startDate?: string; endDate?: string }) => {
   return `${fmt(job.startDate)} – ${fmt(job.endDate)}`;
 };
 ---
-<Base title="CV" description={`CV of ${profile.name}: ${profile.roleLine}. 16+ years across government, telecom, fintech and IoT.`}>
+<Base title="CV" description={`CV of ${profile.name}: ${profile.roleLine}. ${profile.experience} years across banking, fintech, telecom, government, education and IoT.`}>
   <article class="stack-lg">
     <header class="stack">
       <p class="eyebrow">Curriculum vitae</p>
@@ -32,21 +32,31 @@ const period = (job: { startDate?: string; endDate?: string }) => {
       <div>
         {resume.work.map((job) => (
           <div class="job">
-            <p class="when">{period(job)}<br />{job.location}</p>
+            <p class="when">{period(job)}{job.location && <><br />{job.location}</>}</p>
             <div>
               <h3>{job.position}</h3>
               <p class="org">{job.name}</p>
+              {job.summary && <p class="muted small">{job.summary}</p>}
               <ul>{job.highlights.map((h) => <li>{h}</li>)}</ul>
             </div>
           </div>
         ))}
-        <div class="job">
-          <p class="when">2001 – 2015</p>
-          <div>
-            <h3>Earlier career</h3>
-            <p>{resume.earlier}</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="earlier-h">
+      <h2 id="earlier-h">Earlier career</h2>
+      <div>
+        {resume.earlier.map((e) => (
+          <div class="job">
+            <p class="when">{e.period}{e.location && <><br />{e.location}</>}</p>
+            <div>
+              <h3>{e.position}</h3>
+              <p class="org">{e.name}</p>
+              <p>{e.summary}</p>
+            </div>
           </div>
-        </div>
+        ))}
       </div>
     </section>
 

@@ -1,12 +1,13 @@
-// Single source for identity and links. Approved content v1 (2026-10-09).
+// Single source for identity and links. Content v2 (2026-11-19), aligned to the current CV.
 export const profile = {
   name: 'Ahmed Mazen',
   title: 'Digital Transformation and Cloud Architecture Leader',
-  roleLine: 'Principal Cloud & Platform Architect · Enterprise Architect',
+  roleLine: 'Principal Solution Architect · Enterprise & Cloud Architect',
   venture: 'Founder & Product Lead, Twinfra',
   location: 'Based in Cairo · Open to GCC on-site, remote and Egypt roles',
+  experience: '19+',
   tagline:
-    'I design licence-clean, evidence-driven platforms that run the same workloads on AWS or on-premises, from national government integrations to fintech event streams.',
+    'I design licence-clean, evidence-driven platforms that run the same workloads on AWS or on-premises, from national government integrations to banking and fintech payment streams.',
   email: 'hello@amazen33.dev',
   github: 'https://github.com/amazen33',
   linkedin: 'https://www.linkedin.com/in/amazen33',
