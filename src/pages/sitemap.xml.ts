@@ -1,7 +1,7 @@
 // Static sitemap generated at build time.
 import { profile } from '../data/profile';
 
-const paths = ['/', '/work', '/work/twinfra', '/work/streaming-rag', '/work/iot-ee', '/cv', '/how-i-work', '/about', '/contact'];
+const paths = ['/', '/work', '/work/twinfra', '/work/streaming-rag', '/work/iot-ee', '/writing', '/writing/psaf', '/cv', '/how-i-work', '/about', '/contact'];
 
 export function GET(): Response {
   const urls = paths.map((p) => `  <url><loc>${new URL(p, profile.site).toString()}</loc></url>`).join('\n');

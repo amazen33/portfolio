@@ -1,0 +1,482 @@
+---
+import Base from '../../layouts/Base.astro';
+import Diagram from '../../components/Diagram.astro';
+import { writing } from '../../data/writing';
+import { profile } from '../../data/profile';
+
+const meta = writing.find((w) => w.slug === 'psaf')!;
+const published = new Date(`${meta.published}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+
+const toc = [
+  ['vision', 'Vision and mission'],
+  ['principles', 'Foundational principles'],
+  ['lifecycle', 'Product security lifecycle'],
+  ['domains', 'Enterprise security architecture domains'],
+  ['layers', 'Reference architecture layers'],
+  ['supply-chain', 'Software supply chain trust model'],
+  ['ai', 'AI and agentic security extension'],
+  ['controls', 'PSAF control specification'],
+  ['traceability', 'Standards and framework traceability'],
+  ['measurement', 'Security assurance and measurement'],
+  ['maturity', 'PSAF maturity model'],
+  ['exceptions', 'Security exceptions and risk acceptance'],
+  ['roadmap', 'Implementation roadmap'],
+  ['governance', 'Framework governance and evolution'],
+  ['positioning', 'Framework positioning']
+] as const;
+
+const principles = [
+  ['Security by Design', 'Security requirements must be embedded into architecture and design decisions.'],
+  ['Zero Trust', 'Never grant implicit trust based on network location, ownership, or previous authentication.'],
+  ['Least Privilege', 'Every identity, workload, service, and agent receives only the permissions required.'],
+  ['Defense in Depth', 'Apply complementary controls across application, identity, infrastructure, data, and network layers.'],
+  ['Secure Software Supply Chain', 'Establish trust from source code through build, artifact distribution, and deployment.'],
+  ['Continuous Verification', 'Validate security controls throughout development and runtime.'],
+  ['Data Confidentiality and Integrity', 'Protect information during storage, processing, transmission, and delivery.'],
+  ['Resilience by Architecture', 'Design systems to withstand, contain, and recover from failures and attacks.'],
+  ['AI Trust and Accountability', 'Ensure AI models and agents operate within explicit identity, authorization, and policy boundaries.'],
+  ['Evidence-Driven Assurance', 'Every important security control must have an owner, verification procedure, and demonstrable evidence.']
+] as const;
+
+const lifecycle = [
+  {
+    id: 'GOVERN', name: 'Security Governance',
+    intent: 'Establish enterprise security strategy, accountability, policies, and risk ownership.',
+    items: ['Security strategy and policies', 'Enterprise architecture principles', 'Security architecture governance', 'Risk management and acceptance', 'Security requirements and ADRs', 'Regulatory and compliance management', 'Third-party security governance', 'Security awareness and accountability']
+  },
+  {
+    id: 'IDENTIFY', name: 'Assets, Data & Threats',
+    intent: 'Understand what must be protected, its business value, and its exposure.',
+    items: ['Hardware and software asset inventory', 'Application and service inventory', 'Data classification and ownership', 'Data-flow mapping', 'Attack-surface management', 'Threat modeling and risk assessment', 'Dependency and third-party identification', 'Business impact analysis', 'AI model, dataset, and agent inventory']
+  },
+  {
+    id: 'PREVENT', name: 'Secure Architecture & Engineering',
+    intent: 'Prevent vulnerabilities and insecure design decisions before they reach production.',
+    items: ['Secure SDLC', 'Secure coding standards', 'Security architecture reviews', 'Authentication and authorization design', 'Input validation and output encoding', 'Secure API design', 'Cryptographic engineering', 'Dependency risk management', 'Secure configuration', 'Security-focused code reviews']
+  },
+  {
+    id: 'PROTECT', name: 'Identity, Infrastructure & Data',
+    intent: 'Enforce protection across users, applications, workloads, infrastructure, and information.',
+    items: ['IAM and privileged access management', 'Workload identity and federation', 'Zero Trust and micro-segmentation', 'mTLS and certificate lifecycle', 'Encryption and key management', 'Secrets management', 'Cloud and Kubernetes security', 'API and network protection', 'Runtime application protection', 'Tenant and workload isolation', 'Data loss prevention']
+  },
+  {
+    id: 'VERIFY', name: 'Continuous Security Assurance',
+    intent: 'Independently validate security requirements, implementation quality, and software integrity.',
+    items: ['SAST, DAST, SCA, and IAST where appropriate', 'API security testing', 'Container and IaC scanning', 'Fuzz testing', 'Penetration testing', 'Configuration and compliance validation', 'SBOM and VEX validation', 'Artifact signature verification', 'Build provenance verification', 'Deployment integrity verification', 'Security regression testing'],
+    note: 'Verification is a continuous capability applied to every lifecycle stage, rather than a one-time release gate.'
+  },
+  {
+    id: 'DETECT & RESPOND', name: 'Security Operations',
+    intent: 'Identify malicious behavior, investigate incidents, and limit their impact.',
+    items: ['Centralized security logging', 'Security monitoring and analytics', 'Threat intelligence', 'Behavioral anomaly detection', 'SIEM and detection engineering', 'Endpoint and workload threat detection', 'Incident response automation', 'Credential compromise response', 'Forensics and evidence preservation', 'Security incident containment']
+  },
+  {
+    id: 'RECOVER & IMPROVE', name: 'Resilience Engineering',
+    intent: 'Restore trusted operations and continuously strengthen the security architecture.',
+    items: ['Backup integrity and restoration testing', 'Disaster recovery', 'High availability and fault isolation', 'Business continuity', 'Immutable recovery points', 'RTO and RPO management', 'Root cause analysis', 'Lessons learned', 'Security regression prevention', 'Continuous architecture improvement']
+  }
+];
+
+const lifecycleDiagram = `flowchart TB
+  subgraph V["VERIFY · continuous security assurance across every stage"]
+    direction LR
+    G["GOVERN<br/>strategy · policy<br/>risk"] --> I["IDENTIFY<br/>assets · data<br/>threats"]
+    I --> P["PREVENT<br/>secure architecture<br/>and engineering"]
+    P --> R["PROTECT<br/>identity · infrastructure<br/>data"]
+    R --> D["DETECT & RESPOND<br/>security operations"]
+    D --> C["RECOVER & IMPROVE<br/>resilience<br/>engineering"]
+    C -.->|lessons learned| G
+  end`;
+
+const domains = [
+  ['Enterprise Security Governance', 'Strategy, policy, accountability, risk'],
+  ['Asset & Attack-Surface Management', 'Inventory, classification, exposure'],
+  ['Application & API Security', 'Secure application design and execution'],
+  ['Identity & Access Security', 'Human, machine, workload, and agent identity'],
+  ['Network & Zero Trust Security', 'Segmentation, traffic enforcement, trust boundaries'],
+  ['Cloud & Infrastructure Security', 'Cloud, on-premises, containers, Kubernetes'],
+  ['Data Security & Privacy', 'Confidentiality, integrity, retention, privacy'],
+  ['Cryptographic Security', 'PKI, encryption, signing, key management'],
+  ['Software Supply Chain Security', 'Source, dependencies, builds, provenance'],
+  ['Security Testing & Assurance', 'Automated and independent verification'],
+  ['Security Operations', 'Detection, investigation, incident response'],
+  ['Resilience Engineering', 'Availability, isolation, backup, recovery'],
+  ['AI & Agentic Security', 'Models, agents, tools, memory, AI governance']
+] as const;
+
+const layers = [
+  ['Governance & Policy Plane', 'Security policies, risk management, architecture decisions, compliance.'],
+  ['Identity & Trust Plane', 'IAM, workload identity, PKI, SPIFFE/SPIRE, authentication and authorization.'],
+  ['Application & Service Plane', 'Applications, microservices, APIs, service mesh, gateways.'],
+  ['Network & Infrastructure Plane', 'Firewalls, segmentation, cloud networking, Kubernetes, infrastructure security.'],
+  ['Data Protection Plane', 'Encryption, key management, integrity verification, classification and privacy.'],
+  ['Software Supply Chain Plane', 'Source control, CI/CD, dependency management, SBOM, signing, provenance and artifact verification.'],
+  ['Observability & Security Operations Plane', 'Logs, metrics, traces, SIEM, threat detection and incident response.'],
+  ['AI & Agent Security Plane', 'Model governance, agent identities, tool authorization, runtime guardrails and execution auditing.']
+] as const;
+
+const chain = [
+  ['Source code', 'integrity · access control'],
+  ['Dependencies', 'SCA · SBOM · VEX'],
+  ['Build environment', 'isolated · hardened'],
+  ['Build process', 'signed provenance'],
+  ['Artifact', 'signed'],
+  ['Registry', 'protected'],
+  ['Deployment', 'verifies signature and provenance'],
+  ['Runtime', 'integrity monitoring']
+] as const;
+
+const supplyChain = ['Source code integrity and access control', 'Dependency and vulnerability analysis', 'SBOM generation', 'VEX management', 'Build isolation and hardening', 'Signed artifacts', 'Signed and verifiable provenance', 'Artifact registry protection', 'Deployment signature and provenance verification', 'Runtime integrity monitoring'];
+
+const ai = [
+  { name: 'AI model security', items: ['Model and dataset provenance', 'Model integrity verification', 'Model artifact signing', 'Model access control', 'Model vulnerability assessment', 'Training and inference data protection'] },
+  { name: 'LLM application security', items: ['Prompt injection protection', 'Sensitive information disclosure prevention', 'Retrieval and data-access authorization', 'Untrusted input handling', 'Output validation', 'Model abuse monitoring'] },
+  { name: 'Agentic system security', items: ['Unique agent identities', 'Scoped tool authorization', 'Delegated authority controls', 'Human approval for sensitive actions', 'Secure inter-agent communication', 'MCP and external tool security', 'Memory and context integrity', 'Agent runtime monitoring', 'Execution auditing', 'Emergency revocation and termination'] }
+];
+
+const controlFields = [
+  ['Control ID', 'Unique identifier'],
+  ['Control Name', 'Descriptive title'],
+  ['Objective', 'Intended security outcome'],
+  ['Risk Addressed', 'Threat or weakness mitigated'],
+  ['Scope', 'Systems and environments covered'],
+  ['Requirements', 'Mandatory security requirements'],
+  ['Standards Mapping', 'Exact framework identifiers'],
+  ['Architecture Pattern', 'Recommended implementation approach'],
+  ['Implementation Guidance', 'Technical implementation requirements'],
+  ['Verification Method', 'How control effectiveness is tested'],
+  ['Evidence', 'Records proving implementation and effectiveness'],
+  ['Control Owner', 'Accountable role'],
+  ['Frequency', 'Execution and review frequency'],
+  ['Exception Policy', 'Approval, expiration, compensating controls'],
+  ['Maturity Level', 'Current implementation maturity'],
+  ['Metrics', 'Relevant measurable outcomes']
+] as const;
+
+const references = ['NIST CSF 2.0', 'NIST SP 800-218 (SSDF)', 'ISO/IEC 27001:2022', 'ISO/IEC 42001', 'ISO 22301', 'OWASP ASVS', 'OWASP SAMM', 'OWASP API Security', 'NIST SP 800-207', 'NIST AI RMF and AI 600-1', 'SLSA', 'MITRE ATT&CK and MITRE ATLAS', 'CIS Controls and CIS Benchmarks', 'Applicable cloud security and Kubernetes guidance'];
+
+const measures = [
+  { name: 'Coverage', items: ['Percentage of applications with documented threat models', 'Percentage of assets inventoried', 'Percentage of workloads with enforced identity'] },
+  { name: 'Effectiveness', items: ['Critical vulnerabilities detected before production', 'Security test pass rates', 'Unauthorized access attempts successfully blocked'] },
+  { name: 'Operational performance', items: ['MTTD and MTTR', 'Vulnerability remediation time', 'Security incident containment time'] },
+  { name: 'Integrity and trust', items: ['Percentage of releases with verified provenance', 'Percentage of signed artifacts verified before deployment', 'Percentage of recovery tests passing integrity checks'] }
+];
+
+const maturity = [
+  ['L0', 'Undefined', 'No consistent security controls'],
+  ['L1', 'Defined', 'Policies and documented requirements exist'],
+  ['L2', 'Implemented', 'Controls are deployed and operational'],
+  ['L3', 'Verified', 'Controls are regularly tested and evidence is collected'],
+  ['L4', 'Optimized', 'Controls are automated, measured, and continuously improved']
+] as const;
+
+const roadmap = [
+  { name: 'Establish', items: ['Define scope and business context', 'Establish security governance', 'Inventory assets and data', 'Define security baselines', 'Establish threat modeling'] },
+  { name: 'Architect', items: ['Define trust boundaries', 'Establish identity architecture', 'Define cloud and infrastructure controls', 'Design data security and cryptographic controls', 'Establish secure architecture patterns'] },
+  { name: 'Engineer', items: ['Implement secure SDLC', 'Secure CI/CD', 'Integrate automated security testing', 'Establish SBOM and provenance generation', 'Apply Zero Trust controls'] },
+  { name: 'Assure', items: ['Validate control effectiveness', 'Verify artifacts and deployments', 'Establish evidence collection', 'Perform security assessments', 'Measure maturity'] },
+  { name: 'Operate & Improve', items: ['Implement security monitoring', 'Establish incident response', 'Validate resilience and recovery', 'Perform continuous control assessments', 'Improve architecture based on evidence and lessons learned'] }
+];
+---
+<Base
+  title="Product Security Architecture Framework (PSAF)"
+  description="PSAF: a unified, evidence-driven framework for securing digital products across governance, architecture, supply chain, operations and AI/agentic systems. Version 0.2."
+  article={{ headline: meta.title, published: meta.published }}
+>
+  <article class="stack-lg article">
+    <header class="stack">
+      <p class="eyebrow"><a href="/writing">Writing</a> · {meta.kicker}</p>
+      <h1>Product Security Architecture Framework (PSAF)</h1>
+      <p class="lede">
+        One architecture-driven, evidence-based way to secure a digital product across its whole lifecycle: from governance and
+        threat modeling to supply chain, operations and AI agents.
+      </p>
+      <dl class="facts small">
+        <div><dt>Version</dt><dd>{meta.version} · Enhanced architecture proposal</dd></div>
+        <div><dt>Category</dt><dd>Enterprise product security engineering and assurance</dd></div>
+        <div><dt>Scope</dt><dd>Hybrid enterprise, cloud-native, distributed systems, software supply chains, AI/agentic systems</dd></div>
+        <div><dt>Published</dt><dd><time datetime={meta.published}>{published}</time> · {profile.name} · {meta.readingTime}</dd></div>
+      </dl>
+    </header>
+
+    <nav class="toc prose" aria-labelledby="toc-h">
+      <h2 id="toc-h" class="eyebrow">Contents</h2>
+      <ol>
+        {toc.map(([id, label]) => <li><a href={`#${id}`}>{label}</a></li>)}
+      </ol>
+    </nav>
+
+    <section class="stack prose" aria-labelledby="vision">
+      <h2 id="vision"><span class="sec">1</span>Vision and mission</h2>
+      <p>PSAF establishes a unified, architecture-driven approach to securing digital products throughout their entire lifecycle.</p>
+      <p>
+        Its mission is to integrate enterprise security governance, secure architecture, software engineering, infrastructure
+        protection, identity management, software supply-chain integrity, operational resilience, and AI security into one
+        measurable and evidence-driven framework.
+      </p>
+      <p>
+        PSAF does not seek to replace established security standards. It operationalizes their requirements through a unified
+        architecture, control catalog, implementation guidance, verification mechanisms, and continuous assurance model.
+      </p>
+    </section>
+
+    <section class="stack" aria-labelledby="principles">
+      <h2 id="principles"><span class="sec">2</span>Foundational principles</h2>
+      <p class="prose">The framework is based on ten principles.</p>
+      <ul class="rule-list prose">
+        {principles.map(([name, text], i) => (
+          <li><span class="n">{String(i + 1).padStart(2, '0')}</span><div><strong>{name}.</strong> {text}</div></li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="stack" aria-labelledby="lifecycle">
+      <h2 id="lifecycle"><span class="sec">3</span>Product security lifecycle</h2>
+      <p class="prose">
+        PSAF organizes security activities into seven interconnected capabilities. Six follow the life of a product; VERIFY runs
+        alongside all of them.
+      </p>
+      <Diagram code={lifecycleDiagram} caption="The seven PSAF capabilities. Verification is continuous across every stage, not a release gate." />
+      <div class="grid-2">
+        {lifecycle.map((c, i) => (
+          <div class="card">
+            <p class="eyebrow">3.{i + 1} · {c.id}</p>
+            <h3>{c.name}</h3>
+            <p>{c.intent}</p>
+            <ul class="small">{c.items.map((item) => <li>{item}</li>)}</ul>
+            {c.note && <p class="small note">{c.note}</p>}
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="stack" aria-labelledby="domains">
+      <h2 id="domains"><span class="sec">4</span>Enterprise security architecture domains</h2>
+      <p class="prose">
+        The lifecycle defines <em>what</em> the organization must achieve. The architecture domains define <em>where</em> and
+        <em>how</em> those capabilities are implemented.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">Domain</th><th scope="col">Primary responsibility</th></tr></thead>
+          <tbody>{domains.map(([d, r]) => <tr><td><strong>{d}</strong></td><td>{r}</td></tr>)}</tbody>
+        </table>
+      </div>
+      <p class="prose">These are complementary architecture domains, not independent silos.</p>
+    </section>
+
+    <section class="stack" aria-labelledby="layers">
+      <h2 id="layers"><span class="sec">5</span>Reference architecture layers</h2>
+      <p class="prose">PSAF should provide an implementation reference architecture consisting of eight logical layers.</p>
+      <ol class="planes prose">
+        {layers.map(([name, text]) => <li><strong>{name}:</strong> {text}</li>)}
+      </ol>
+      <p class="prose">
+        Security governance, identity, verification, and observability are cross-cutting capabilities spanning these layers.
+      </p>
+    </section>
+
+    <section class="stack" aria-labelledby="supply-chain">
+      <h2 id="supply-chain"><span class="sec">6</span>Software supply chain trust model</h2>
+      <p class="prose">PSAF defines an end-to-end trust chain. Each stage should establish verifiable security properties.</p>
+      <figure class="diagram">
+        <ol class="chain" aria-label="Trust chain, in order">
+          {chain.map(([stage, property]) => <li><strong>{stage}</strong><span>{property}</span></li>)}
+        </ol>
+        <figcaption>The PSAF trust chain, from source code to runtime, with the property each stage must prove.</figcaption>
+      </figure>
+      <div class="prose stack">
+        <h3>Required capabilities</h3>
+        <ul class="cols">{supplyChain.map((c) => <li>{c}</li>)}</ul>
+        <p>
+          SLSA provides specific supply-chain guarantees, while additional controls are required for dependency safety,
+          malicious code detection, and software vulnerability management.
+        </p>
+      </div>
+    </section>
+
+    <section class="stack" aria-labelledby="ai">
+      <h2 id="ai"><span class="sec">7</span>AI and agentic security extension</h2>
+      <p class="prose">AI systems introduce additional attack surfaces and security responsibilities. PSAF extends its control model to cover them.</p>
+      <div class="grid-3">
+        {ai.map((g) => (
+          <div class="card">
+            <h3>{g.name}</h3>
+            <ul class="small">{g.items.map((item) => <li>{item}</li>)}</ul>
+          </div>
+        ))}
+      </div>
+      <blockquote class="callout prose">
+        AI agents must never inherit unrestricted authority simply because an upstream user or service has authenticated successfully.
+      </blockquote>
+    </section>
+
+    <section class="stack" aria-labelledby="controls">
+      <h2 id="controls"><span class="sec">8</span>PSAF control specification</h2>
+      <p class="prose">Every security control must follow a standardized definition.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">Field</th><th scope="col">Description</th></tr></thead>
+          <tbody>{controlFields.map(([f, d]) => <tr><td><strong>{f}</strong></td><td>{d}</td></tr>)}</tbody>
+        </table>
+      </div>
+
+      <div class="card control prose">
+        <p class="eyebrow">Example control</p>
+        <h3><code>PSAF-IAM-001</code> Workload Identity Enforcement</h3>
+        <p><strong>Objective:</strong> Ensure that each workload has a verifiable identity and receives only explicitly authorized access.</p>
+        <p><strong>Risk addressed:</strong> Credential theft, identity impersonation, lateral movement, unauthorized service access.</p>
+        <div>
+          <p><strong>Requirements</strong></p>
+          <ul>
+            <li>Workloads must use managed or cryptographically verifiable identities.</li>
+            <li>Long-lived shared credentials must be avoided.</li>
+            <li>Service-to-service communication must authenticate both parties.</li>
+            <li>Authorization must be enforced independently of authentication.</li>
+            <li>Credentials and certificates must have controlled lifecycles.</li>
+            <li>Compromised identities must be revocable.</li>
+          </ul>
+        </div>
+        <p><strong>Reference alignment:</strong> NIST CSF 2.0 PR.AA, NIST SP 800-207, applicable NIST SSDF practices.</p>
+        <p><strong>Implementation examples:</strong> SPIFFE/SPIRE, Istio mTLS, OPA, Vault.</p>
+        <div>
+          <p><strong>Verification</strong></p>
+          <ul>
+            <li>Validate workload identity issuance.</li>
+            <li>Test unauthorized service access.</li>
+            <li>Verify certificate expiration and rotation.</li>
+            <li>Confirm that identity revocation prevents access.</li>
+          </ul>
+        </div>
+        <div>
+          <p><strong>Evidence</strong></p>
+          <ul>
+            <li>Workload identity inventory.</li>
+            <li>Authentication and authorization logs.</li>
+            <li>Certificate lifecycle records.</li>
+            <li>Automated security test results.</li>
+          </ul>
+        </div>
+        <div>
+          <p><strong>Metrics</strong></p>
+          <ul>
+            <li>Percentage of workloads with managed identities.</li>
+            <li>Percentage of service connections authenticated using mTLS.</li>
+            <li>Mean time to revoke compromised workload credentials.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="stack prose" aria-labelledby="traceability">
+      <h2 id="traceability"><span class="sec">9</span>Standards and framework traceability</h2>
+      <p>PSAF maintains a versioned cross-reference to established industry standards. Primary references:</p>
+      <ul class="cols">{references.map((r) => <li>{r}</li>)}</ul>
+      <p>Every mapping must identify:</p>
+      <ul>
+        <li>Reference standard and version.</li>
+        <li>Exact control or requirement identifier.</li>
+        <li>Relationship to the PSAF control.</li>
+        <li>Mapping strength: full, partial, or supporting.</li>
+        <li>Validation status.</li>
+        <li>Last review date.</li>
+      </ul>
+      <p class="note">A mapped control does not automatically demonstrate compliance with its referenced standard.</p>
+    </section>
+
+    <section class="stack" aria-labelledby="measurement">
+      <h2 id="measurement"><span class="sec">10</span>Security assurance and measurement</h2>
+      <p class="prose">PSAF measures implementation and effectiveness rather than counting security tools. It uses four measurement categories.</p>
+      <div class="grid-2">
+        {measures.map((m) => (
+          <div class="card">
+            <h3>{m.name}</h3>
+            <ul class="small">{m.items.map((item) => <li>{item}</li>)}</ul>
+          </div>
+        ))}
+      </div>
+      <p class="prose">Each measurement must have a defined calculation, target, owner, reporting period, and evidence source.</p>
+    </section>
+
+    <section class="stack" aria-labelledby="maturity">
+      <h2 id="maturity"><span class="sec">11</span>PSAF maturity model</h2>
+      <p class="prose">PSAF introduces five proposed organizational maturity levels.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">Level</th><th scope="col">Name</th><th scope="col">Description</th></tr></thead>
+          <tbody>{maturity.map(([l, n, d]) => <tr><td><code>{l}</code></td><td><strong>{n}</strong></td><td>{d}</td></tr>)}</tbody>
+        </table>
+      </div>
+      <div class="prose stack">
+        <p>
+          Maturity must be assessed at the control and domain levels. A single organization-wide score must not conceal critical
+          security weaknesses.
+        </p>
+        <p class="note">These levels are PSAF-defined and are not an official maturity scale from NIST or ISO.</p>
+      </div>
+    </section>
+
+    <section class="stack prose" aria-labelledby="exceptions">
+      <h2 id="exceptions"><span class="sec">12</span>Security exceptions and risk acceptance</h2>
+      <p>No enterprise framework is complete without a formal exception process. Every security exception must include:</p>
+      <ul class="cols">
+        <li>Unique exception identifier.</li>
+        <li>Business justification.</li>
+        <li>Associated risk and affected assets.</li>
+        <li>Risk owner and approval authority.</li>
+        <li>Compensating controls.</li>
+        <li>Expiration date.</li>
+        <li>Remediation plan.</li>
+        <li>Review and renewal requirements.</li>
+      </ul>
+      <blockquote class="callout">Exceptions must never silently become permanent architectural decisions.</blockquote>
+    </section>
+
+    <section class="stack" aria-labelledby="roadmap">
+      <h2 id="roadmap"><span class="sec">13</span>Implementation roadmap</h2>
+      <ol class="phases">
+        {roadmap.map((p, i) => (
+          <li class="card">
+            <p class="eyebrow">Phase {i + 1}</p>
+            <h3>{p.name}</h3>
+            <ul class="small">{p.items.map((item) => <li>{item}</li>)}</ul>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <section class="stack prose" aria-labelledby="governance">
+      <h2 id="governance"><span class="sec">14</span>Framework governance and evolution</h2>
+      <p>PSAF itself must be governed as a versioned engineering standard. Required practices:</p>
+      <ul class="cols">
+        <li>Version-controlled control catalog.</li>
+        <li>Standards reference register.</li>
+        <li>Documented change proposals.</li>
+        <li>Review and approval process.</li>
+        <li>Compatibility and migration guidance.</li>
+        <li>Deprecation policy.</li>
+        <li>Periodic technical and standards reviews.</li>
+        <li>Publicly documented change history.</li>
+      </ul>
+      <p>Every release must specify its framework version, referenced standards versions, changes, and known limitations.</p>
+    </section>
+
+    <section class="stack prose" aria-labelledby="positioning">
+      <h2 id="positioning"><span class="sec">15</span>Framework positioning</h2>
+      <p>
+        The Product Security Architecture Framework is an implementation-oriented enterprise security architecture and assurance
+        model. It connects security strategy with architecture, engineering, operations, and measurable business outcomes.
+      </p>
+      <p>Its defining objective is to make security:</p>
+      <p class="motto">Architected. Enforced. Verified. Measured. Continuously Improved.</p>
+    </section>
+
+    <footer class="stack prose article-foot">
+      <p class="small muted">
+        PSAF {meta.version} is a proposal. Feedback, mappings and counter-examples are welcome at
+        <a href={`mailto:${profile.email}?subject=PSAF%20${meta.version}`}>{profile.email}</a>.
+      </p>
+      <p><a href="/writing">← All writing</a></p>
+    </footer>
+  </article>
+</Base>

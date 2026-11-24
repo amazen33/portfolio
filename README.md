@@ -1,7 +1,7 @@
 # amazen33.dev
 
-Portfolio and live CV of **Ahmed Mazen**, Digital Transformation and Cloud Architecture Leader
-(Principal Cloud & Platform Architect · Enterprise Architect · Founder & Product Lead, Twinfra).
+Portfolio and live CV of **Ahmed Mazen**, Enterprise Solution Architect & Technical Team Lead
+(Principal Solution Architect · Cloud, Platform & Application Modernisation · Founder & Product Lead, Twinfra).
 
 - **Stack:** Astro (static) on Cloudflare Pages, with Pages Functions for edge features. See [ADR-0001](docs/adr/0001-hosting.md).
 - **Residency and sovereignty:** what standard Cloudflare plans do and do not guarantee. See [ADR-0002](docs/adr/0002-data-residency-on-standard-plans.md).
@@ -31,6 +31,7 @@ No deploy token is stored in this repository.
 - `src/data/profile.ts`: identity and links.
 - `src/data/resume.json`: the CV, in JSON Resume format.
 - `src/data/work.ts` and `src/pages/work/*`: case studies. Every claim traces to a public repository.
+- `src/data/writing.ts` and `src/pages/writing/*`: technical articles, such as the Product Security Architecture Framework (PSAF).
 
 ## Licence
 

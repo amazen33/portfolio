@@ -12,7 +12,7 @@ const period = (job: { startDate?: string; endDate?: string }) => {
   return `${fmt(job.startDate)} – ${fmt(job.endDate)}`;
 };
 ---
-<Base title="CV" description={`CV of ${profile.name}: ${profile.roleLine}. ${profile.experience} years across banking, fintech, telecom, government, education and IoT.`}>
+<Base title="CV" description={`CV of ${profile.name}: ${profile.roleLine}. ${profile.experience} years across banking, fintech, telecom, government, education, IoT and enterprise platforms.`}>
   <article class="stack-lg">
     <header class="stack">
       <p class="eyebrow">Curriculum vitae</p>
@@ -26,6 +26,19 @@ const period = (job: { startDate?: string; endDate?: string }) => {
       </p>
       <div class="actions no-print"><button class="btn secondary" type="button" data-print>Print or save as PDF</button></div>
     </header>
+
+    <section aria-labelledby="str-h">
+      <h2 id="str-h">Leadership and architecture strengths</h2>
+      <div class="table-wrap">
+        <table class="kv">
+          <tbody>
+            {resume.strengths.map((s) => (
+              <tr><th scope="row">{s.name}</th><td>{s.detail}</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
 
     <section aria-labelledby="exp-h">
       <h2 id="exp-h">Experience</h2>
@@ -61,7 +74,7 @@ const period = (job: { startDate?: string; endDate?: string }) => {
     </section>
 
     <section aria-labelledby="skills-h">
-      <h2 id="skills-h">Skills</h2>
+      <h2 id="skills-h">Core technology and methods</h2>
       <div class="grid-2">
         {resume.skills.map((s) => (
           <div class="card">
