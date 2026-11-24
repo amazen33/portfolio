@@ -27,6 +27,7 @@ Direct upload also keeps the property ADR-0001 chose it for: production serves t
 3. **`production` stays as the record** of what is live. It moves to the release commit after each production upload, under the same ruleset (no deletion or force-push, admins only).
 4. **The checksum file names only the archive**, so `sha256sum -c` works after download. The release workflow previously wrote the runner's absolute path into it.
 5. **No deploy token in GitHub.** This is unchanged. Uploads use the owner's `wrangler login`.
+6. **Guard against repository-root deployments** (added 2026-11-24). `wrangler.toml` sets `pages_build_output_dir = "./dist"`. A Git build without a build command then fails instead of publishing the repository. Without the guard, the merge of PR #6 (`05001fc`) created a Git *Production* deployment that went live for about four hours: amazen33.dev served `README.md` and `package.json` and returned 404 for every page except the edge-cached `/`. Production was restored by re-uploading the v1.0.0 build. Earlier merges to `main` had stayed *Idle*, so the outcome of a merge is not predictable.
 
 ## Owner actions (Cloudflare dashboard, Pages → `amazen33` → Settings → Builds & deployments)
 
@@ -35,6 +36,8 @@ Direct upload also keeps the property ADR-0001 chose it for: production serves t
 - **Alternative:** to return to ADR-0003 instead, fix the build configuration *and* set the production branch to `production`, then mark this ADR rejected. Until both are done, do **not** rely on pushing `production` to deploy.
 
 ## Consequences
+
+- **After every merge to `main`**, check that https://amazen33.dev/cv returns 200 and `/README.md` returns 404, until automatic production deployments are off. If not, re-upload the last release's folder as in RELEASING.md step 5.
 
 - Production changes only through a deliberate upload of a published release's asset, which is stronger than ADR-0003's intent.
 - One manual step per release. It can be automated later with a scoped Pages API token stored as a GitHub secret, in a job triggered by publishing a release.

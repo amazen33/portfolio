@@ -49,6 +49,7 @@ The `version` in `package.json` holds the **next release's base version**, `X.Y.
 
 - **Tags are immutable.** A `v*` tag is never moved or deleted.
 - **Every change goes through a PR.** `main` requires the `Build and check` and `release-checks` status checks.
+- **Check production after every merge to `main`** until automatic production deployments are off in the Pages dashboard: `/cv` must return 200 and `/README.md` 404 ([ADR-0004](docs/adr/0004-production-by-direct-upload-of-the-release-build.md)).
 - **Production serves only a published stable release's asset**, uploaded as in step 5. `production` records that commit. It can't be deleted or force-pushed, and only admins can update it.
 - **Every PR updates `CHANGELOG.md` under `[Unreleased]`**, or carries the label `changelog:skip` with a reason.
 
