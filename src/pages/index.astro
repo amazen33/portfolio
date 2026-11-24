@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import EdgeCard from '../components/EdgeCard.astro';
 import { profile } from '../data/profile';
 import { work } from '../data/work';
+import { writing } from '../data/writing';
 ---
 <Base>
   <div class="stack-lg">
@@ -16,8 +17,8 @@ import { work } from '../data/work';
         <span>{profile.location}</span>
       </div>
       <p class="prose muted">
-        {profile.experience} years building enterprise systems across banking, fintech, telecom, government, education and IoT. I connect
-        enterprise architecture (TOGAF, C4, DDD) with hands-on engineering: I write the decisions down, and I still read the code.
+        {profile.experience} years building enterprise systems across banking, fintech, telecom, government, education, IoT and enterprise platforms.
+        I connect enterprise architecture (TOGAF, C4) with hands-on engineering: I write the decisions down, and I still read the code.
       </p>
       <div class="actions">
         <a class="btn primary" href="/work">See the work</a>
@@ -52,6 +53,21 @@ import { work } from '../data/work';
           </article>
         ))}
       </div>
+    </section>
+
+    <section aria-labelledby="writing-h">
+      <div class="section-head">
+        <p class="eyebrow">Writing</p>
+        <h2 id="writing-h">Latest article</h2>
+      </div>
+      {writing.slice(0, 1).map((w) => (
+        <article class="card">
+          <p class="eyebrow">{w.kicker}</p>
+          <h3><a href={`/writing/${w.slug}`}>{w.title}</a></h3>
+          <p class="prose">{w.summary}</p>
+          <a class="more" href={`/writing/${w.slug}`}>Read the article →</a>
+        </article>
+      ))}
     </section>
 
     <section aria-labelledby="practice-h">

@@ -1,0 +1,26 @@
+---
+import Base from '../../layouts/Base.astro';
+import { writing } from '../../data/writing';
+
+const date = (iso: string) => new Date(`${iso}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
+---
+<Base title="Writing" description="Technical articles on security architecture, cloud platforms and enterprise architecture.">
+  <div class="stack-lg">
+    <section class="section-head">
+      <p class="eyebrow">Writing</p>
+      <h1>Technical articles</h1>
+      <p class="lede">Frameworks, reference models and the reasoning behind architecture decisions.</p>
+    </section>
+    <div class="grid-2">
+      {writing.map((w) => (
+        <article class="card">
+          <p class="eyebrow">{w.kicker}</p>
+          <h2 class="h3"><a href={`/writing/${w.slug}`}>{w.title}</a></h2>
+          <p>{w.summary}</p>
+          <p class="small muted"><time datetime={w.published}>{date(w.published)}</time> · Version {w.version} · {w.readingTime}</p>
+          <a class="more" href={`/writing/${w.slug}`}>Read the article →</a>
+        </article>
+      ))}
+    </div>
+  </div>
+</Base>

@@ -2,21 +2,32 @@
   "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
   "basics": {
     "name": "Ahmed Mazen",
-    "label": "Digital Transformation and Cloud Architecture Leader",
+    "label": "Enterprise Solution Architect & Technical Team Lead",
     "email": "hello@amazen33.dev",
     "url": "https://amazen33.dev",
-    "summary": "Principal Solution Architect and Enterprise Architect with 19+ years of enterprise experience across banking, fintech, telecom, government, education and IoT. A foundation in Java/Jakarta EE, IBM enterprise platforms and banking middleware, now designing secure, resilient integration ecosystems: payment integration, ESB and API architecture, Kafka event streaming and AWS platform networking, with hands-on engineering depth, architecture governance, high availability and disaster recovery.",
+    "summary": "Enterprise Solution Architect with 21+ years across banking, fintech, telecom, government, education, IoT and enterprise platforms. Combines Java/Jakarta EE and IBM WebSphere/FileNet expertise with J2EE/JSF modernisation, cloud and network architecture, microservices, ESB/API integration, event streaming, cybersecurity and resilience. Defines target-state architectures, roadmaps, standards and governance, translating business needs into scalable solutions. Guides cross-functional delivery from discovery and design through implementation, integration, release and operations.",
     "location": { "city": "Cairo", "countryCode": "EG" },
     "profiles": [
       { "network": "LinkedIn", "username": "amazen33", "url": "https://www.linkedin.com/in/amazen33" },
       { "network": "GitHub", "username": "amazen33", "url": "https://github.com/amazen33" }
     ]
   },
+  "strengths": [
+    { "name": "Enterprise and solution architecture", "detail": "TOGAF ADM, C4 L1–L3, target-state blueprints, technical roadmaps, architecture governance" },
+    { "name": "Application modernisation", "detail": "Java/Jakarta EE, J2EE, JSF, EJB, IBM WebSphere, FileNet, Spring Boot, React, Angular" },
+    { "name": "Cloud, platform and networking", "detail": "AWS, Azure, Alibaba Cloud, VPC, VPC Lattice, PrivateLink, NLB/ALB, WAF, Kubernetes" },
+    { "name": "Integration and distributed systems", "detail": "ESB, REST/gRPC APIs, Kafka, CDC, microservices, CQRS, event-driven architecture" },
+    { "name": "Security and architecture controls", "detail": "Zero Trust, Istio mTLS, SPIFFE/SPIRE, OPA, Kyverno, OpenBao, IAM, PCI DSS" },
+    { "name": "Technical leadership and delivery", "detail": "Technical direction, Java technical lead (JTL) experience, SDLC governance, Agile/Scrum, CI/CD, stakeholder alignment" },
+    { "name": "Multi-domain platform engineering", "detail": "Banking, government, telecom, education, IoT, BPM and enterprise content systems" },
+    { "name": "Resilience and quality engineering", "detail": "HA/DR, SLOs, observability, performance engineering, fault handling, automated testing" }
+  ],
   "work": [
     {
       "name": "Synechron",
       "position": "Principal Solution Architect",
-      "summary": "Enterprise Java, cloud, platform engineering, cybersecurity and AI",
+      "summary": "Tahakom engagement · Enterprise Java, cloud, platform engineering, cybersecurity and AI",
+      "location": "Riyadh, KSA",
       "startDate": "2026-11",
       "highlights": [
         "Lead end-to-end enterprise architecture across Java/Spring, microservices, APIs and modern web applications.",
@@ -25,129 +36,132 @@
       ]
     },
     {
-      "name": "Independent consultant (client: Spectro Systems)",
-      "position": "Principal Cloud & Integration Architect",
-      "summary": "IoT modernisation, payments integration, AWS platform networking and security, for UAE and European markets",
+      "name": "Independent consultant",
+      "position": "Principal Cloud & Enterprise Architect",
+      "summary": "Selected client: IoT platform modernisation, cloud networking, fintech integration and security · UAE and Iraq markets",
       "location": "Remote",
       "startDate": "2026-02",
       "endDate": "2026-11",
       "highlights": [
-        "Cloud platform and network architecture: modernised the SpectroTank platform as AWS cloud-native microservices, with VPC, VPC Lattice, PrivateLink, NLB/ALB and WAF connectivity, Istio mTLS and SPIFFE/SPIRE workload identity.",
-        "Fintech billing and payments: designed Stripe Billing and Payments API integrations for usage-based billing, pay-as-you-go pricing, automated payment processing and subscription lifecycle management.",
-        "Event-driven payment platforms: Kafka payment-streaming pipelines with MirrorMaker 2 and Schema Registry for transaction monitoring, fraud detection, anomaly identification and predictive risk scoring.",
-        "Governance and security controls: TOGAF ADM, C4 and PCI DSS 4.0; cardholder data environment boundaries and policy as code with OPA, Kyverno and OpenBao.",
-        "Delivery and resilience: GitOps and CI/CD with GitHub Actions, GitLab CI, Argo CD and Argo Rollouts, with SBOM and vulnerability assessment; multi-region disaster recovery, Kubernetes backup and observability with Velero and OpenTelemetry."
+        "Platform modernisation and cloud networking: modernised SpectroTank as AWS cloud-native microservices, defining service connectivity with VPC, VPC Lattice, PrivateLink, NLB/ALB and WAF, with Istio mTLS and SPIFFE/SPIRE workload identity.",
+        "Fintech billing and payment architecture: designed Stripe Billing and Payments API integrations for usage-based billing, pay-as-you-go pricing, automated payment processing and subscription lifecycle management across UAE and European markets.",
+        "Event-driven payment platforms: architected Kafka payment-streaming pipelines using MirrorMaker 2 and Schema Registry for transaction monitoring, fraud detection, anomaly identification and predictive risk scoring.",
+        "Enterprise architecture and security governance: applied TOGAF ADM, C4 and PCI DSS 4.0; defined cardholder data environment (CDE) boundaries, policy as code and secrets-management controls using OPA, Kyverno and OpenBao.",
+        "Delivery, resilience and observability: established GitOps and CI/CD with GitHub Actions, GitLab CI, Argo CD and Argo Rollouts, with SBOM and vulnerability assessment; designed multi-region disaster recovery, Kubernetes backup and observability using Velero and OpenTelemetry.",
+        "Frontend engineering: developed and integrated Angular and React web interfaces for platform workflows, connecting front-end components with cloud-native services and APIs."
       ]
     },
     {
       "name": "NTG Clarity",
-      "position": "Java Architect / Technical Lead",
+      "position": "Java Architect / Java Technical Lead",
       "summary": "Telecom platforms and distributed systems",
       "location": "KSA / Egypt",
-      "startDate": "2022-09",
+      "startDate": "2024-01",
       "endDate": "2025-12",
       "highlights": [
-        "Architected a distributed, multi-tier SNMP network-management and polling platform that collects infrastructure telemetry, aggregates operational metrics and supports near-real-time fault detection across carrier networks.",
-        "Defined availability, scalability and business-continuity standards, with service-level objectives and resilience requirements, for services processing millions of network transactions a day.",
-        "Established SDLC governance and engineering quality practices (TDD, automated testing, regression controls) to raise release confidence and reduce service-disruption risk."
+        "Architected a distributed, multi-tier SNMP network-management and polling platform, defining telemetry collection and aggregation flows to support near-real-time fault detection across carrier networks.",
+        "Defined platform availability, scalability and business-continuity standards for services processing millions of network transactions per day, including service-level objectives and resilience requirements."
       ]
     },
     {
-      "name": "Sigma Solutions",
-      "position": "Java Architect / Technical Lead",
-      "summary": "IoT Squared engagement: enterprise IoT and real-time location platforms",
-      "location": "Riyadh",
-      "startDate": "2022-01",
-      "endDate": "2022-08",
+      "name": "NTG Clarity",
+      "position": "Java Technical Lead / Java Architect",
+      "summary": "IoT Squared engagement · Enterprise IoT and RTLS platforms",
+      "location": "Riyadh, KSA",
+      "startDate": "2022-12",
+      "endDate": "2023-12",
       "highlights": [
-        "Architected multi-tenant IoT and real-time location platforms for Saudi government entities, including SADIA, on ThingsBoard, Spring Boot and Cassandra, with real-time Spark and PostgreSQL analytics.",
-        "Led API governance, edge security and full-stack development with Apache APISIX, Alibaba Cloud, React and Node.js to deliver scalable IoT analytics dashboards."
+        "Architected multi-tenant IoT and real-time location system (RTLS) platforms for Saudi government entities, including SADIA, using ThingsBoard, Spring Boot and Cassandra, with real-time Spark and PostgreSQL analytics.",
+        "Led API governance, edge security and full-stack development using Apache APISIX, Alibaba Cloud, React and Node.js to deliver scalable IoT analytics dashboards."
       ]
     },
     {
-      "name": "Independent consultant (client: IT-Blocks)",
+      "name": "Independent consultant (selected client: IT-Blocks)",
       "position": "Java Enterprise Application Modernisation",
       "summary": "Education-sector J2EE/JSF system modernisation",
-      "location": "Cairo",
+      "location": "Cairo, Egypt",
       "startDate": "2020-06",
       "endDate": "2021-12",
       "highlights": [
-        "Modernised a legacy J2EE/JSF educational system across its server-side presentation and Java enterprise application layers.",
-        "Focused on maintainability and incremental evolution while preserving established application behaviour and business workflows."
+        "Education platform modernisation: modernised a legacy J2EE/JSF educational system, working across its server-side presentation and Java enterprise application layers.",
+        "Enterprise application modernisation: focused on maintainability and incremental evolution of the existing platform while preserving established application behaviour and business workflows."
       ]
     },
     {
       "name": "Raqmiyat",
       "position": "Senior Technical Consultant",
-      "summary": "ELM engagement: government integration and national digital services",
-      "location": "Riyadh",
-      "startDate": "2013-03",
-      "endDate": "2019-12",
+      "summary": "ELM engagement · Government integration and national digital services",
+      "location": "Riyadh, KSA",
+      "startDate": "2013-11",
+      "endDate": "2019-08",
       "highlights": [
-        "Government integration gateways for Jawazat (General Directorate of Passports) and Mooroor (General Directorate of Traffic): border control, travel authorisation, visa services, Saher automated traffic monitoring, vehicle registration and licensing.",
-        "Backend services and Enterprise Service Bus (ESB) workflows for Muqeem and residency-related digital services: visa, Iqama and workforce-management transactions.",
-        "Mission-critical integration services connecting national databases through the National Information Center (NIC), for secure identity verification and high-concurrency data exchange across government entities."
+        "Government integration gateways: engineered gateways for Jawazat (General Directorate of Passports) and Mooroor (General Directorate of Traffic; TAMM, Bashir), supporting border-control and travel-authorisation processes, visa services, Saher automated traffic monitoring, vehicle registration and licensing.",
+        "Designed backend services and Enterprise Service Bus (ESB) workflows for Muqeem and residency-related digital services, supporting visa, Iqama and workforce-management transactions.",
+        "Developed mission-critical enterprise integration services connecting national databases through the National Information Center (NIC), enabling secure identity verification and high-concurrency data exchange across government entities.",
+        "Full-stack delivery and ways of working: contributed to government application interfaces using Angular and Java/Spring services, collaborating with cross-functional teams through Agile/Scrum practices."
       ]
     }
   ],
   "earlier": [
     {
-      "name": "Beshara Group",
-      "position": "Java Team Lead (2012–2013, Cairo) · Senior J2EE Consultant (2007–2008, Kuwait)",
-      "period": "2012 – 2013 · 2007 – 2008",
-      "summary": "BPM and IBM FileNet application platform using JavaServer Faces (JSF) for Kuwait's Ministry of Social Affairs."
-    },
-    {
       "name": "SiliconExpert",
       "position": "Senior Technical Engineer",
-      "period": "2009 – 2011",
+      "period": "Jul 2011 – Sep 2013",
+      "location": "Cairo, Egypt",
       "summary": "Java backend solutions for electronic-component data validation, business rules and BOM analysis."
     },
     {
       "name": "Informatique-eg",
       "position": "Senior Java & IBM WebSphere Consultant",
-      "period": "2008 – 2009",
+      "period": "Apr 2008 – May 2011",
       "location": "Doha, Qatar",
-      "summary": "BPM/MVC and IBM FileNet application platform on Oracle ADF for the Qatar Ministry of Defense."
+      "summary": "A BPM/MVC and IBM FileNet-based application platform on Oracle ADF for the Qatar Ministry of Defense."
+    },
+    {
+      "name": "Beshara Group",
+      "position": "Senior J2EE Consultant",
+      "period": "Feb 2007 – Mar 2008",
+      "location": "Sharq, Kuwait",
+      "summary": "An Oracle-based enterprise BPM solution (Oracle ADF, Oracle Database, Java/J2EE) for Kuwait's Ministry of Social Affairs: application components, business workflows and data-access integration."
     },
     {
       "name": "Intercom Enterprise",
       "position": "Senior J2EE Developer",
-      "period": "2006 – 2007",
-      "location": "Cairo",
+      "period": "Apr 2006 – Jan 2007",
+      "location": "Cairo, Egypt",
       "summary": "ISO 8583 banking middleware and internal transaction-monitoring tools for payment-message processing and operational visibility."
     },
     {
       "name": "GATES",
       "position": "J2EE Developer & IBM WebSphere Instructor",
-      "period": "2004 – 2005",
-      "location": "Cairo",
+      "period": "Aug 2004 – Oct 2005",
+      "location": "Cairo, Egypt",
       "summary": "J2EE development and IBM WebSphere technical training."
     },
     {
       "name": "EZZ Trade",
       "position": "Accountant",
-      "period": "2001 – 2003",
-      "location": "Cairo",
+      "period": "Dec 2001 – Dec 2003",
+      "location": "Cairo, Egypt",
       "summary": "Financial reporting and reconciliations: a foundation in commerce and accounting."
     }
   ],
   "education": [
-    { "institution": "Cairo University", "studyType": "Bachelor of Commerce", "area": "Accounting" }
+    { "institution": "Cairo University, Egypt", "studyType": "Bachelor of Commerce", "area": "Accounting" }
   ],
   "certificates": [
-    { "name": "Sun Certified Java Programmer (SCJP)" },
+    { "name": "Sun Certified Programmer for Java (SCJP)" },
     { "name": "Sun Certified Web Component Developer (SCWCD)" }
   ],
-  "frameworks": ["TOGAF ADM", "C4", "Domain-Driven Design", "PCI DSS 4.0"],
+  "frameworks": ["TOGAF ADM", "C4 (L1–L3)", "PCI DSS 4.0", "Agile/Scrum"],
   "skills": [
-    { "name": "Banking and payments", "keywords": ["ISO 8583 banking middleware", "Stripe Billing / Payments APIs", "Payment integration", "Transaction monitoring", "PCI DSS 4.0"] },
-    { "name": "Java enterprise and modernisation", "keywords": ["Java / Jakarta EE", "J2EE, JSF, EJB", "Spring Boot / Spring Cloud", "IBM WebSphere", "IBM FileNet P8", "IBM Db2"] },
-    { "name": "Integration and APIs", "keywords": ["ESB", "REST / gRPC / GraphQL", "API gateways (Apache APISIX)", "Microservices", "BPM and workflow integration", "CQRS", "Saga", "Camunda (familiarity)"] },
-    { "name": "Streaming and data", "keywords": ["Apache Kafka", "MirrorMaker 2", "Schema Registry", "Debezium CDC", "Flink", "Spark", "RabbitMQ", "PostgreSQL / pgvector", "Cassandra"] },
-    { "name": "Cloud and platforms", "keywords": ["AWS (EKS, VPC, VPC Lattice, PrivateLink, NLB/ALB, WAF, S3, Route 53, CloudWatch)", "Azure", "Kubernetes", "Docker", "Terraform", "Helm", "Argo CD / Argo Rollouts", "Velero"] },
-    { "name": "Security and governance", "keywords": ["Zero Trust", "Istio mTLS", "SPIFFE/SPIRE", "OPA", "Kyverno", "OpenBao / Vault", "Keycloak / OIDC", "TOGAF ADM", "C4", "API governance", "Architecture decision records"] },
-    { "name": "Resilience and observability", "keywords": ["HA / DR", "SLOs", "OpenTelemetry", "Prometheus", "OpenSearch", "Performance engineering"] },
-    { "name": "Engineering and AI", "keywords": ["Python (FastAPI)", "TypeScript", "Angular", "React", "Node.js", "Applied LLMs and RAG"] }
+    { "name": "Enterprise architecture and governance", "keywords": ["TOGAF ADM", "C4 L1–L3", "Architecture standards", "Technical roadmaps", "Design reviews", "Agile/Scrum delivery"] },
+    { "name": "Banking and payment integration", "keywords": ["ISO 8583 banking middleware", "Stripe Billing / Payments APIs", "Payment processing", "PCI DSS 4.0"] },
+    { "name": "Application modernisation and Java", "keywords": ["Java / Jakarta EE", "J2EE, JSF, EJB", "Spring Framework / Boot / Cloud", "IBM WebSphere Application Server", "IBM FileNet P8", "React", "Angular", "Microservices"] },
+    { "name": "Cloud, platform and networking", "keywords": ["AWS (EKS, VPC, VPC Lattice, PrivateLink, NLB/ALB, WAF, S3, Route 53, CloudWatch)", "Azure", "Kubernetes", "Docker", "Helm", "Ansible", "Terraform"] },
+    { "name": "Integration and event streaming", "keywords": ["ESB", "REST / gRPC / GraphQL APIs", "Apache Kafka", "MirrorMaker 2", "Debezium CDC", "RabbitMQ", "Apache Flink", "Spark"] },
+    { "name": "Security and DevSecOps", "keywords": ["Zero Trust", "Istio mTLS", "SPIFFE/SPIRE", "OPA", "Kyverno", "OpenBao", "IAM", "GitOps", "CI/CD", "SBOM and vulnerability assessment"] },
+    { "name": "Data, workflow and AI", "keywords": ["PostgreSQL", "IBM Db2", "MongoDB", "Cassandra", "BPM", "Saga and Camunda (familiarity)", "LLM integration", "RAG", "AI security"] },
+    { "name": "Resilience and performance", "keywords": ["High availability", "Disaster recovery", "SLOs", "Observability", "Distributed fault handling", "Automated quality controls"] }
   ]
 }

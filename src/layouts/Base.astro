@@ -9,8 +9,10 @@ import { profile, nav } from '../data/profile';
 interface Props {
   title?: string;
   description?: string;
+  /** Set on articles: adds og:type "article", publication dates and Article structured data. */
+  article?: { headline: string; published: string; modified?: string };
 }
-const { title, description } = Astro.props;
+const { title, description, article } = Astro.props;
 const pageTitle = title ? `${title} · ${profile.name}` : `${profile.name} — ${profile.title}`;
 const pageDescription = description ?? `${profile.roleLine}. ${profile.tagline}`;
 const canonical = new URL(Astro.url.pathname, profile.site).toString();
@@ -26,7 +28,19 @@ const personLd = {
   email: `mailto:${profile.email}`,
   address: { '@type': 'PostalAddress', addressLocality: 'Cairo', addressCountry: 'EG' },
   sameAs: [profile.linkedin, profile.github],
-  knowsAbout: ['Enterprise Architecture', 'Cloud Architecture', 'Platform Engineering', 'Kubernetes', 'AWS', 'Apache Kafka', 'Zero Trust', 'TOGAF']
+  knowsAbout: ['Enterprise Architecture', 'Solution Architecture', 'Cloud Architecture', 'Platform Engineering', 'Application Modernization', 'Product Security Architecture', 'Kubernetes', 'AWS', 'Apache Kafka', 'Zero Trust', 'TOGAF']
+};
+const articleLd = article && {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: article.headline,
+  description: pageDescription,
+  datePublished: article.published,
+  dateModified: article.modified ?? article.published,
+  url: canonical,
+  mainEntityOfPage: canonical,
+  inLanguage: 'en',
+  author: { '@type': 'Person', name: profile.name, url: profile.site }
 };
 ---
 <!doctype html>
@@ -40,13 +54,16 @@ const personLd = {
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta name="theme-color" content="#0b6e78" />
     <script is:inline src="/theme.js"></script>
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={article ? 'article' : 'website'} />
+    {article && <meta property="article:published_time" content={article.published} />}
+    {article?.modified && <meta property="article:modified_time" content={article.modified} />}
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={pageDescription} />
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content={profile.name} />
     <meta name="twitter:card" content="summary" />
     <script type="application/ld+json" set:html={JSON.stringify(personLd)} />
+    {articleLd && <script type="application/ld+json" set:html={JSON.stringify(articleLd)} />}
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>

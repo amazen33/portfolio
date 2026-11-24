@@ -34,6 +34,7 @@ jobs:
         run: |
           test -f dist/index.html
           test -f dist/cv.html
+          test -f dist/writing/psaf.html
           test -f dist/_headers
           test -f dist/.well-known/security.txt
           grep -q "^Contact: mailto:security@amazen33.dev$" dist/.well-known/security.txt
