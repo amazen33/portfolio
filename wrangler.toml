@@ -1,0 +1,12 @@
+# Cloudflare Pages configuration for the project "amazen33" (ADR-0004).
+#
+# Guard: Cloudflare's Git builds must publish dist/, never the repository root. With this file, Pages takes
+# the output directory from here. If the dashboard has no build command, dist/ does not exist and the Git
+# build FAILS instead of going live. Production is deployed by direct upload of the release build
+# (RELEASING.md step 5); `wrangler pages deploy <dir>` overrides the output directory with <dir>.
+#
+# While this file exists it is the source of truth for the project's configuration: bindings and runtime
+# variables set in the dashboard are ignored. The site has none (functions/api/edge.ts reads only request.cf).
+name = "amazen33"
+pages_build_output_dir = "./dist"
+compatibility_date = "2026-11-01"

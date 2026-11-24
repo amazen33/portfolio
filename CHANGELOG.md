@@ -18,6 +18,13 @@ See [RELEASING.md](RELEASING.md) for the release streams.
   `sha256sum -c` works on the downloaded asset.
 - `package.json` is bumped to the next base version, 1.0.1.
 
+### Fixed
+
+- `wrangler.toml` sets the Pages build output directory to `dist`, so a Cloudflare Git build without a
+  build command fails instead of publishing the repository root. On 2026-11-24 the merge of #6 made
+  amazen33.dev serve `README.md` and `package.json` for about four hours, until the v1.0.0 build was
+  re-uploaded. ADR-0004 and RELEASING.md record the guard and the post-merge check.
+
 ## [1.0.0] - 2026-11-24
 
 ### Added
