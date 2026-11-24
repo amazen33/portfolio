@@ -19,10 +19,9 @@ Pages Functions (`/functions`) run on Cloudflare. To try them locally: `npx wran
 
 ## Deploy
 
-The Cloudflare Pages project `amazen33` (https://amazen33.pages.dev; custom domain `amazen33.dev`) is connected to this repository through Cloudflare's GitHub app ([ADR-0003](docs/adr/0003-production-from-stable-releases.md)):
+The Cloudflare Pages project `amazen33` (https://amazen33.pages.dev; custom domain `amazen33.dev`) serves **production by direct upload** of a published stable release's CI-tested build, with Wrangler under the owner's login ([ADR-0004](docs/adr/0004-production-by-direct-upload-of-the-release-build.md)). The `production` branch records the commit that is live. See [RELEASING.md](RELEASING.md) step 5.
 
-- every branch and pull request gets a **preview** deployment;
-- **production** builds from the `production` branch, which moves only to the commit of a published stable release. See [RELEASING.md](RELEASING.md).
+The project is also connected to this repository through Cloudflare's GitHub app, but its Git builds don't produce the site yet: they publish the repository root. Don't treat a Git preview or a "Deploy successful" check as evidence of what is live.
 
 No deploy token is stored in this repository.
 

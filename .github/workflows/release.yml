@@ -55,7 +55,7 @@ jobs:
       - name: Package the tested build
         run: |
           (cd dist && zip -q -r "$RUNNER_TEMP/site-dist-$TAG.zip" .)
-          sha256sum "$RUNNER_TEMP/site-dist-$TAG.zip" | tee "$RUNNER_TEMP/site-dist-$TAG.zip.sha256"
+          (cd "$RUNNER_TEMP" && sha256sum "site-dist-$TAG.zip" | tee "site-dist-$TAG.zip.sha256")
       - name: Show the release payload
         env:
           PRERELEASE: ${{ steps.check.outputs.prerelease }}

@@ -1,6 +1,6 @@
 # ADR-0003: Production from stable releases through a `production` branch
 
-**Status:** Accepted (owner, 2026-10-14: release streams for all repositories). **Amends:** ADR-0001 decision 2 (how the site is deployed).
+**Status:** Accepted (owner, 2026-10-14: release streams for all repositories). Decision 2 superseded by [ADR-0004](0004-production-by-direct-upload-of-the-release-build.md) (proposed 2026-11-24): the Git builds never served the site, and production is deployed by direct upload. **Amends:** ADR-0001 decision 2 (how the site is deployed).
 
 ## Context
 

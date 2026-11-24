@@ -7,6 +7,17 @@ See [RELEASING.md](RELEASING.md) for the release streams.
 
 ## [Unreleased]
 
+### Changed
+
+- ADR-0004 (proposed): production is a direct upload of the stable release's CI-tested build, as
+  it has been in practice. Cloudflare's Git builds publish the repository root, not `dist/`, and its
+  production branch is still `main`. It supersedes ADR-0003 decision 2. `RELEASING.md` (streams,
+  steps 3 and 5) and the README "Deploy" section now describe the upload, and `production` records the
+  live commit.
+- The release workflow writes the checksum file with the archive's name only, so
+  `sha256sum -c` works on the downloaded asset.
+- `package.json` is bumped to the next base version, 1.0.1.
+
 ## [1.0.0] - 2026-11-24
 
 ### Added
