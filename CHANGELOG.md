@@ -7,6 +7,8 @@ See [RELEASING.md](RELEASING.md) for the release streams.
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-11-24
+
 ### Added
 
 - Writing section (`/writing`) with its first technical article, the Product Security Architecture
@@ -14,7 +16,6 @@ See [RELEASING.md](RELEASING.md) for the release streams.
   maturity model and roadmap. Articles carry `og:type` article and `TechArticle` structured data, appear
   in the sitemap and on the home page, and CI checks that the PSAF page is built.
 - CV: a "Leadership and architecture strengths" section.
-
 - Security disclosure (SEC-01): `/.well-known/security.txt` (RFC 9116, contact
   `security@amazen33.dev`, expires 2027-04-30), `SECURITY.md`, and a CI check that the built
   site contains the file.
@@ -24,7 +25,6 @@ See [RELEASING.md](RELEASING.md) for the release streams.
   Production deploys only from a published stable release.
 - ADR-0003: production builds from the `production` branch, which moves only to a stable
   release's commit. It records the existing Cloudflare Pages Git integration (amends ADR-0001).
-
 - Colour theme switcher (System, Light, Dark) in the footer. The choice stays in the visitor's
   browser (`localStorage`); `public/theme.js` is a same-origin script, so the CSP is unchanged.
 
@@ -36,12 +36,11 @@ See [RELEASING.md](RELEASING.md) for the release streams.
   split into its telecom role (2024–2025) and the IoT Squared engagement (2022–2023); the IT-Blocks
   and Raqmiyat/ELM entries with the CV's dates; earlier career with month-level dates; skills regrouped
   as the CV's "Core technology and methods".
-- Content aligned to the current CV: 19+ years and six sectors; current role (Synechron); the
-  Spectro Systems, NTG Clarity, Sigma Solutions, IT-Blocks and Raqmiyat entries with the CV's dates,
-  titles and bullets; a dated "Earlier career" list; the skills grouped as banking and payments, Java
-  enterprise, integration, streaming, cloud, security, resilience and engineering.
 - Status tags are plain bold monospace text instead of pills, and "Read the case study" links are
   not underlined until hovered.
-- Footer line reads "19+ years in enterprise IT & architecture".
+- Footer line reads "21+ years in enterprise IT & architecture".
 - README "Deploy" describes the Git integration and the `production` branch instead of
   manual direct uploads.
+
+[Unreleased]: https://github.com/amazen33/portfolio/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/amazen33/portfolio/releases/tag/v1.0.0
