@@ -7,6 +7,8 @@ See [RELEASING.md](RELEASING.md) for the release streams.
 
 ## [Unreleased]
 
+## [1.0.1] - 2026-11-27
+
 ### Added
 
 - About: a portrait photo (`/ahmed-mazen.webp`, 480×480 WebP).
@@ -74,5 +76,6 @@ See [RELEASING.md](RELEASING.md) for the release streams.
 - README "Deploy" describes the Git integration and the `production` branch instead of
   manual direct uploads.
 
-[Unreleased]: https://github.com/amazen33/portfolio/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/amazen33/portfolio/compare/v1.0.1...HEAD
+[1.0.1]: https://github.com/amazen33/portfolio/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/amazen33/portfolio/releases/tag/v1.0.0
