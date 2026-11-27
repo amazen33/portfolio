@@ -4,17 +4,21 @@ import { profile } from '../data/profile';
 ---
 <Base title="About" description={`About ${profile.name}: ${profile.roleLine}.`}>
   <article class="stack-lg">
-    <header class="stack">
-      <p class="eyebrow">About</p>
-      <h1>{profile.name}</h1>
-      <p class="role" style="font-family: var(--font-mono); color: var(--accent)">{profile.title}</p>
+    <header class="portrait-head">
+      <img class="portrait" src="/ahmed-mazen.webp" width="144" height="144" alt={`Portrait of ${profile.name}`} />
+      <div class="stack">
+        <p class="eyebrow">About</p>
+        <h1>{profile.name}</h1>
+        <p class="role" style="font-family: var(--font-mono); color: var(--accent)">{profile.title}</p>
+      </div>
     </header>
     <div class="stack prose">
       <p>
         I'm an Enterprise Solution Architect and technical team lead with {profile.experience} years across banking, fintech,
         telecom, Saudi government platforms, education, IoT and enterprise platforms. I started in Java/Jakarta EE, IBM
-        WebSphere/FileNet and ISO 8583 banking middleware, and now combine J2EE/JSF modernisation with cloud and network
-        architecture, microservices, ESB/API integration, event streaming, cybersecurity and resilience.
+        WebSphere, Db2, MQ and FileNet, Oracle and ISO 8583 banking middleware, and now combine J2EE/JSF modernisation with
+        cloud and network architecture, Amazon DynamoDB, microservices, ESB/API integration, event streaming, cybersecurity
+        and resilience.
       </p>
       <p>
         I define target-state architectures, roadmaps, standards and governance with TOGAF ADM and C4 (L1–L3), and translate

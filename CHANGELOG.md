@@ -7,7 +7,17 @@ See [RELEASING.md](RELEASING.md) for the release streams.
 
 ## [Unreleased]
 
+### Added
+
+- About: a portrait photo (`/ahmed-mazen.webp`, 480×480 WebP).
+
 ### Changed
+
+- Content aligned to the CV's IBM, Oracle, DynamoDB and SAFe edition: the summary, strengths and skills
+  now name IBM Db2, IBM MQ, Oracle Database, Amazon DynamoDB, Amazon S3, Kanban and SAFe; the
+  IT-Blocks and Intercom entries mention IBM WebSphere, Db2 and MQ.
+- CV dates and titles match the employers' experience letters: Raqmiyat ends in August 2018 (was
+  August 2019), and the 2022–2023 NTG Clarity role is "Java Architect".
 
 - ADR-0004 (proposed): production is a direct upload of the stable release's CI-tested build, as
   it has been in practice. Cloudflare's Git builds publish the repository root, not `dist/`, and its

@@ -113,6 +113,10 @@ main { padding-block: 48px 80px; }
 .hero .role { font-family: var(--font-mono); font-size: 0.95rem; color: var(--accent); }
 .hero .meta { display: flex; flex-wrap: wrap; gap: 6px 18px; color: var(--muted); font-size: 0.95rem; }
 .actions { display: flex; flex-wrap: wrap; gap: 10px; }
+
+/* Portrait header (About) */
+.portrait-head { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+.portrait { width: 144px; height: 144px; border-radius: 50%; object-fit: cover; border: 3px solid var(--surface); box-shadow: 0 0 0 1px var(--rule), var(--shadow); flex: none; }
 .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 8px; font-weight: 700; font-size: 0.95rem; text-decoration: none; border: 1px solid var(--accent); }
 .btn.primary { background: var(--accent); color: var(--accent-ink); }
 .btn.secondary { color: var(--accent); background: transparent; }

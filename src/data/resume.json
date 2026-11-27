@@ -5,7 +5,7 @@
     "label": "Enterprise Solution Architect & Technical Team Lead",
     "email": "hello@amazen33.dev",
     "url": "https://amazen33.dev",
-    "summary": "Enterprise Solution Architect with 21+ years across banking, fintech, telecom, government, education, IoT and enterprise platforms. Combines Java/Jakarta EE and IBM WebSphere/FileNet expertise with J2EE/JSF modernisation, cloud and network architecture, microservices, ESB/API integration, event streaming, cybersecurity and resilience. Defines target-state architectures, roadmaps, standards and governance, translating business needs into scalable solutions. Guides cross-functional delivery from discovery and design through implementation, integration, release and operations.",
+    "summary": "Enterprise Solution Architect with 21+ years across banking, fintech, telecom, government, education, IoT and enterprise platforms. Combines Java/Jakarta EE and IBM WebSphere, IBM Db2, IBM MQ and FileNet expertise with Oracle Database, Amazon DynamoDB, J2EE/JSF modernisation, cloud and network architecture, microservices, ESB/API integration, event streaming, cybersecurity and resilience. Defines target-state architectures, roadmaps, standards and governance, translating business needs into scalable solutions. Guides cross-functional delivery from discovery and design through implementation, integration, release and operations.",
     "location": { "city": "Cairo", "countryCode": "EG" },
     "profiles": [
       { "network": "LinkedIn", "username": "amazen33", "url": "https://www.linkedin.com/in/amazen33" },
@@ -14,11 +14,11 @@
   },
   "strengths": [
     { "name": "Enterprise and solution architecture", "detail": "TOGAF ADM, C4 L1–L3, target-state blueprints, technical roadmaps, architecture governance" },
-    { "name": "Application modernisation", "detail": "Java/Jakarta EE, J2EE, JSF, EJB, IBM WebSphere, FileNet, Spring Boot, React, Angular" },
+    { "name": "Application modernisation", "detail": "Java/Jakarta EE, J2EE, JSF, EJB, IBM WebSphere, IBM Db2, IBM MQ, FileNet, Spring Boot, React, Angular" },
     { "name": "Cloud, platform and networking", "detail": "AWS, Azure, Alibaba Cloud, VPC, VPC Lattice, PrivateLink, NLB/ALB, WAF, Kubernetes" },
-    { "name": "Integration and distributed systems", "detail": "ESB, REST/gRPC APIs, Kafka, CDC, microservices, CQRS, event-driven architecture" },
+    { "name": "Integration and distributed systems", "detail": "ESB, IBM MQ, REST/gRPC APIs, Kafka, CDC, microservices, CQRS, event-driven architecture" },
     { "name": "Security and architecture controls", "detail": "Zero Trust, Istio mTLS, SPIFFE/SPIRE, OPA, Kyverno, OpenBao, IAM, PCI DSS" },
-    { "name": "Technical leadership and delivery", "detail": "Technical direction, Java technical lead (JTL) experience, SDLC governance, Agile/Scrum, CI/CD, stakeholder alignment" },
+    { "name": "Technical leadership and delivery", "detail": "Technical direction, Java technical lead (JTL) experience, SDLC governance, Agile/Scrum, Kanban, SAFe, CI/CD, stakeholder alignment" },
     { "name": "Multi-domain platform engineering", "detail": "Banking, government, telecom, education, IoT, BPM and enterprise content systems" },
     { "name": "Resilience and quality engineering", "detail": "HA/DR, SLOs, observability, performance engineering, fault handling, automated testing" }
   ],
@@ -65,7 +65,7 @@
     },
     {
       "name": "NTG Clarity",
-      "position": "Java Technical Lead / Java Architect",
+      "position": "Java Architect",
       "summary": "IoT Squared engagement · Enterprise IoT and RTLS platforms",
       "location": "Riyadh, KSA",
       "startDate": "2022-12",
@@ -78,12 +78,12 @@
     {
       "name": "Independent consultant (selected client: IT-Blocks)",
       "position": "Java Enterprise Application Modernisation",
-      "summary": "Education-sector J2EE/JSF system modernisation",
+      "summary": "Education-sector J2EE/JSF modernisation and IBM enterprise platforms",
       "location": "Cairo, Egypt",
       "startDate": "2020-06",
       "endDate": "2021-12",
       "highlights": [
-        "Education platform modernisation: modernised a legacy J2EE/JSF educational system, working across its server-side presentation and Java enterprise application layers.",
+        "Education platform modernisation: modernised a legacy J2EE/JSF educational system, working hands-on with IBM WebSphere Application Server, IBM Db2 and IBM MQ alongside its server-side presentation and Java application layers.",
         "Enterprise application modernisation: focused on maintainability and incremental evolution of the existing platform while preserving established application behaviour and business workflows."
       ]
     },
@@ -93,7 +93,7 @@
       "summary": "ELM engagement · Government integration and national digital services",
       "location": "Riyadh, KSA",
       "startDate": "2013-11",
-      "endDate": "2019-08",
+      "endDate": "2018-08",
       "highlights": [
         "Government integration gateways: engineered gateways for Jawazat (General Directorate of Passports) and Mooroor (General Directorate of Traffic; TAMM, Bashir), supporting border-control and travel-authorisation processes, visa services, Saher automated traffic monitoring, vehicle registration and licensing.",
         "Designed backend services and Enterprise Service Bus (ESB) workflows for Muqeem and residency-related digital services, supporting visa, Iqama and workforce-management transactions.",
@@ -129,7 +129,7 @@
       "position": "Senior J2EE Developer",
       "period": "Apr 2006 – Jan 2007",
       "location": "Cairo, Egypt",
-      "summary": "ISO 8583 banking middleware and internal transaction-monitoring tools for payment-message processing and operational visibility."
+      "summary": "ISO 8583 banking middleware and internal transaction-monitoring tools, using IBM MQ for asynchronous message queuing and payment-message processing."
     },
     {
       "name": "GATES",
@@ -153,15 +153,15 @@
     { "name": "Sun Certified Programmer for Java (SCJP)" },
     { "name": "Sun Certified Web Component Developer (SCWCD)" }
   ],
-  "frameworks": ["TOGAF ADM", "C4 (L1–L3)", "PCI DSS 4.0", "Agile/Scrum"],
+  "frameworks": ["TOGAF ADM", "C4 (L1–L3)", "PCI DSS 4.0", "Agile/Scrum", "Kanban", "SAFe"],
   "skills": [
-    { "name": "Enterprise architecture and governance", "keywords": ["TOGAF ADM", "C4 L1–L3", "Architecture standards", "Technical roadmaps", "Design reviews", "Agile/Scrum delivery"] },
+    { "name": "Enterprise architecture and governance", "keywords": ["TOGAF ADM", "C4 L1–L3", "Architecture standards", "Technical roadmaps", "Design reviews", "Agile/Scrum, Kanban and SAFe"] },
     { "name": "Banking and payment integration", "keywords": ["ISO 8583 banking middleware", "Stripe Billing / Payments APIs", "Payment processing", "PCI DSS 4.0"] },
-    { "name": "Application modernisation and Java", "keywords": ["Java / Jakarta EE", "J2EE, JSF, EJB", "Spring Framework / Boot / Cloud", "IBM WebSphere Application Server", "IBM FileNet P8", "React", "Angular", "Microservices"] },
+    { "name": "Application modernisation and Java", "keywords": ["Java / Jakarta EE", "J2EE, JSF, EJB", "Spring Framework / Boot / Cloud", "IBM WebSphere Application Server", "IBM FileNet P8", "Oracle Database", "React", "Angular", "Microservices"] },
     { "name": "Cloud, platform and networking", "keywords": ["AWS (EKS, VPC, VPC Lattice, PrivateLink, NLB/ALB, WAF, S3, Route 53, CloudWatch)", "Azure", "Kubernetes", "Docker", "Helm", "Ansible", "Terraform"] },
-    { "name": "Integration and event streaming", "keywords": ["ESB", "REST / gRPC / GraphQL APIs", "Apache Kafka", "MirrorMaker 2", "Debezium CDC", "RabbitMQ", "Apache Flink", "Spark"] },
+    { "name": "Integration and event streaming", "keywords": ["ESB", "IBM MQ", "REST / gRPC / GraphQL APIs", "Apache Kafka", "MirrorMaker 2", "Debezium CDC", "RabbitMQ", "Apache Flink", "Spark"] },
     { "name": "Security and DevSecOps", "keywords": ["Zero Trust", "Istio mTLS", "SPIFFE/SPIRE", "OPA", "Kyverno", "OpenBao", "IAM", "GitOps", "CI/CD", "SBOM and vulnerability assessment"] },
-    { "name": "Data, workflow and AI", "keywords": ["PostgreSQL", "IBM Db2", "MongoDB", "Cassandra", "BPM", "Saga and Camunda (familiarity)", "LLM integration", "RAG", "AI security"] },
+    { "name": "Data, workflow and AI", "keywords": ["Oracle Database", "IBM Db2", "Amazon DynamoDB", "Amazon S3", "PostgreSQL", "MongoDB", "Cassandra", "BPM", "Saga and Camunda (familiarity)", "LLM integration", "RAG", "AI security"] },
     { "name": "Resilience and performance", "keywords": ["High availability", "Disaster recovery", "SLOs", "Observability", "Distributed fault handling", "Automated quality controls"] }
   ]
 }
