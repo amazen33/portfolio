@@ -18,7 +18,6 @@ See [RELEASING.md](RELEASING.md) for the release streams.
   IT-Blocks and Intercom entries mention IBM WebSphere, Db2 and MQ.
 - CV dates and titles match the employers' experience letters: Raqmiyat ends in August 2018 (was
   August 2019), and the 2022–2023 NTG Clarity role is "Java Architect".
-
 - ADR-0004 (proposed): production is a direct upload of the stable release's CI-tested build, as
   it has been in practice. Cloudflare's Git builds publish the repository root, not `dist/`, and its
   production branch is still `main`. It supersedes ADR-0003 decision 2. `RELEASING.md` (streams,
@@ -27,6 +26,11 @@ See [RELEASING.md](RELEASING.md) for the release streams.
 - The release workflow writes the checksum file with the archive's name only, so
   `sha256sum -c` works on the downloaded asset.
 - `package.json` is bumped to the next base version, 1.0.1.
+
+### Removed
+
+- Work: the `wsl2-k8s-lab` and `pCloud` lab links. Both repositories no longer exist on GitHub, so the
+  links returned 404. Every remaining GitHub link resolves to a public repository.
 
 ### Fixed
 
